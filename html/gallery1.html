@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="style1.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+        @import url('https://fonts.googleapis.com/css2?family=Kdam+Thmor+Pro&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
+    .header1{
+      padding: 30px;
+      text-align: center;
+      background-color: rgb(172, 99, 99) ;
+      font-size: 50px; 
+      font-family: 'Dancing Script', cursive;    
+    } 
+
+    .body {
+        font-family: 'Kdam Thmor Pro', sans-serif;
+        
+    }
+    * {box-sizing: border-box}
+    .mySlides1, .mySlides2 {display: none}
+    img {vertical-align: middle;}
+    
+    /* Slideshow container */
+    .slideshow-container {
+      max-width: 1000px;
+      position: relative;
+      margin: auto;
+    }
+    
+    /* Next & previous buttons */
+    .prev, .next {
+      cursor: pointer;
+      position: absolute;
+      top: 50%;
+      width: auto;
+      padding: 16px;
+      margin-top: -22px;
+      color: white;
+      font-weight: bold;
+      font-size: 18px;
+      transition: 0.6s ease;
+      border-radius: 0 3px 3px 0;
+      user-select: none;
+    }
+    
+    /* Position the "next button" to the right */
+    .next {
+      right: 0;
+      border-radius: 3px 0 0 3px;
+    }
+    
+    /* On hover, add a grey background color */
+    .prev:hover, .next:hover {
+      background-color: #f1f1f1;
+      color: black;
+    }
+</style>
+</head>
+<body>
+
+<div class="header1">
+  <h1>Gallery</h1>
+</div>
+<h3 style="font-family:Kdam Thmor Pro">Our memories </h3>
+<div class="slideshow-container">
+  <div class="mySlides1">
+    <img src="https://www.oakridge.in/wp-content/uploads/2020/09/3_Academics-1.jpg" style="width:100%">
+  </div>
+
+  <div class="mySlides1">
+    <img src="https://www.indusschool.com/international-school-bangalore/sites/international-school-bangalore/files/2020-10/admission_banner.jpg" style="width:100%">
+  </div>
+
+  <div class="mySlides1">
+    <img src="https://www.educationworld.in/wp-content/uploads/2011/11/Indus-Pune.jpg" style="width:100%">
+  </div>
+
+  <a class="prev" onclick="plusSlides(-1, 0)">&#10094;</a>
+  <a class="next" onclick="plusSlides(1, 0)">&#10095;</a>
+</div>
+
+<h3 style="font-family:Kdam Thmor Pro">Our Activities</h3>
+<div class="slideshow-container">
+  <div class="mySlides2">
+    <img src="https://cdn2.hubspot.net/hubfs/2174926/Library.jpg" style="width:100%">
+  </div>
+
+  <div class="mySlides2">
+    <img src="https://vidhyashramschool.files.wordpress.com/2021/04/bcd7739780e79315adcd4888ff9f8490.jpg" style="width:100%">
+  </div>
+
+  <div class="mySlides2">
+    <img src="https://images.unsplash.com/photo-1518614368389-5160c0b0de72?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8c2Nob29sJTIwc3BvcnR8ZW58MHx8MHx8&w=1000&q=80" style="width:100%">
+  </div>
+
+  <a class="prev" onclick="plusSlides(-1, 1)">&#10094;</a>
+  <a class="next" onclick="plusSlides(1, 1)">&#10095;</a>
+</div>
+<h1 style="font-family:Kdam Thmor Pro">Testimonials</h1>
+<iframe width="1000" height="500" src="https://www.youtube.com/embed/YvwRNTPDABk">
+</iframe>
+
+
+<script>
+let slideIndex = [1,1];
+let slideId = ["mySlides1", "mySlides2"]
+showSlides(1, 0);
+showSlides(1, 1);
+
+function plusSlides(n, no) {
+  showSlides(slideIndex[no] += n, no);
+}
+
+function showSlides(n, no) {
+  let i;
+  let x = document.getElementsByClassName(slideId[no]);
+  if (n > x.length) {slideIndex[no] = 1}    
+  if (n < 1) {slideIndex[no] = x.length}
+  for (i = 0; i < x.length; i++) {
+     x[i].style.display = "none";  
+  }
+  x[slideIndex[no]-1].style.display = "block";  
+}
+</script>
+
+<br>
+<br>
+<footer class="site-footer">
+  <div class="container">
+    <div class="row">
+        <h6 class="text-justify">              Contact us</h6>
+        <div class="div1"><p>   Plot No.1,Opp karachi Bakery</p><p>   Khajaguda,Hyderabad</p><p>   Rangareddy,Telangana.-500089</p><p>   PhNO. 8008003334/1200-3434    Mail: BDSN@admin.edu</p>
+        </div>
+      </div>
+        </p>
+      </div>
+
+        <ul class="social-icons">
+          <li><a class="facebook" href="https://www.facebook.com/FlatEarthToday"><i class="fa fa-facebook"></i></a></li>
+          <li><a class="instagram" href="https://www.instagram.com/hemanth_yarlagadda/"><i class="fa fa-instagram"></i></a></li>
+          <li><a class="linkedin" href="https://www.linkedin.com/in/elon-musk-3a54b5240"><i class="fa fa-linkedin"></i></a></li>   
+          <li><a class="youtube" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"><i class="fa fa-youtube"></i></a></li>   
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
