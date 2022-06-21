@@ -19,16 +19,100 @@
         font-family: 'Kdam Thmor Pro', sans-serif;
         
     }
+    
+       
+        /* Float three columns */
+        .column {
+          float: left;
+          width: 33%;
+          padding: 0 5px;
+      }
+       
+      .row {
+          margin: 0 -5px;
+      }
+     
+      /* Clear floats after the columns */
+      .row:after {
+          content: "";
+          display: table;
+      }
+     
+     
+      /* Style the cards */
+      .card {
+          padding: 10px;
+          text-align: center;
+          background-color: gray;
+          color: white;
+      }
+       
+      .card:hover {
+          transform: scale(1.1);
+          background-color: black;
+          transition-duration: 2s;
+          color: white;
+      }
+       
+      .fa {
+          font-size: 50px;
+      }
 </style>
 </head>
 <body>
 
 <div class="header1">
-  <h1>SchoolStatistics</h1>
+  <h1>School Statistics</h1>
 </div>
 <br>
 <br>
 <h3 style="font-family:Kdam Thmor Pro">Statistics in student strength</h3>
+<br>
+<div class="row">
+  <div class="column">
+      <div class="card">
+<p><i class="fa fa-user"></i></p>
+
+
+          <h3>150+</h3>
+           
+
+<p>Faculty</p>
+
+
+      </div>
+  </div>
+  <div class="column">
+      <div class="card">
+           
+
+<p><i class="fa fa-book"></i></p>
+
+
+          <h3>2000+</h3>
+           
+
+<p>Students</p>
+
+
+      </div>
+  </div>
+  <div class="column">
+      <div class="card">
+           
+
+<p><i class="fa fa-smile-o"></i></p>
+
+
+          <h3>800+</h3>
+           
+
+<p>Alumni</p>
+      </div>
+  </div>
+</div>
+<br>
+<br>
 <img src="xchose.png" width="300" height="300" float="left">
 <p>Every year our school invites students to join, as our excellence student ratio gradually been increased, every year there is probably a ratio of 50% to 53% of boys and 45 to 47% of girls students joining our school.</p>
 <p>Students studying our school are mostly interested in arts and sciences and also IT, they are more passionate about Knowledge and give bright Achievements to school and for their parents.</p>
