@@ -2,8 +2,10 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="style1.css">
+<link id="pagestyle" rel="stylesheet" href="style1.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href='https://css.gg/dark-mode.css' rel='stylesheet'>
+<link href='https://css.gg/dark-mode.css' rel='stylesheet'>
 <script src="functions.js">
 </script>
 <style>
@@ -23,7 +25,7 @@
       <i class="fa fa-caret-down"></i>
     </button>
     <div class="dropdown-content">
-      <a href="beyond.html">Beyond Academics</a>
+      <a class="beyond" href="beyond.html">Beyond Academics</a>
       <a href="calender.html">Calendar</a>
       <a href="syllabus.html">Curicullum</a>
     </div>
@@ -72,6 +74,7 @@
       <a href="faculty.html">Faculty</a>
     </div>
   </div>
+  <button class="Darkmode" onclick="toggleTheme()"><i class="gg-dark-mode"></i></button>
   <a href="Enquire.html" style="float:right">Enquire now</a>
 </div>
 
@@ -166,5 +169,21 @@
     </div>
   </div>
 </footer>
+<script>
+        function toggleTheme() {
+            // Obtains an array of all <link>
+            // elements.
+            // Select your element using indexing.
+            var pagestyle = document.getElementsByTagName('link')[0];
+            // Change the value of href attribute 
+            // to change the css sheet.
+            if (pagestyle.getAttribute('href') == 'style1.css') {
+                pagestyle.setAttribute('href', 'style2.css');
+             } else {
+                pagestyle.setAttribute('href', 'style1.css');
+            }
+        }
+		
+</script>
 </body>
 </html>
