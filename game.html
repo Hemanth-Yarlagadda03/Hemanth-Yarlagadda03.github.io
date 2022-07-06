@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Rock Paper Scissors Tutorial</title>
+    <style>
+		.box{
+			background-color:#3973ac;
+			align:cener;
+			padding:4%;
+			text-align:center;
+			}
+		.header{
+			text-align:center;
+			font-weight:light;
+			background-color:yellow;
+			padding-top:2px;
+			padding-bottom:4px;
+		}
+		.score-board {
+	border: 3px solid #fff;
+	width: 300px;
+	margin: 40px auto;
+	font-size: 40px;
+	border-radius: 4px;
+	text-align: center;
+	padding: 15px 20px;
+	position: relative;
+}
+.badge {
+	background: #e2584d;
+	text-transform: uppercase;
+	font-size: 14px;
+	padding: 10px 6px;
+}
+#user-label {
+	position: absolute;
+	top: 50%;
+	left: -5%;
+	transform: translate(-10%, -50%);
+}
+#computer-label {
+	position: absolute;
+	top: 50%;
+	right: -5%;
+	transform: translate(10%, -50%);
+}
+
+		
+    </style>
+  </head>
+  <body>
+	    <header class="header"><h1>Rock Paper Scissors</h1></header>
+<div class="box">
+	<div class="score-board">
+      <div id="user-label" class="badge">user</div>
+      <div id="computer-label" class="badge">comp</div>
+	 <span id="user-score">0</span> : <span id="computer-score">0</span>
+	</div>
+    <h2>Computer Choice: <span id="computer-choice"></span></h2>
+    <h2>Your Choice: <span id="user-choice"></span></h2>
+    <h2>Result: <span id="result"></span></h2>
+
+    <button id="rock">Rock</button>
+    <button id="paper">paper</button>
+    <button id="scissors">scissors</button>
+
+    <script src="app.js" charset="utf-8"></script>
+   </div>
+  </body>
+</html>
