@@ -2,6 +2,8 @@
 
 ## School Website
 
+A simple School Website comprises of tools HTML,CSS,Java Script
+
 * Mahesh Kumar Chinta AM.EN.U4CSE21263
 * G V Sai Kowshik AM.EN.U4CSE21271
 * N Amarnath Rao AM.EN.U4CSE21267
