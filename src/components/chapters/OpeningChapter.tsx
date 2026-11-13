@@ -96,31 +96,31 @@ export function OpeningChapter({ onComplete }: Props) {
   return (
     <section
       ref={rootRef}
-      className="relative flex min-h-[100svh] items-center justify-center overflow-hidden bg-[var(--midnight)] text-[var(--ivory)]"
-      style={{ ['--cursor-fg' as string]: 'var(--ivory)' }}
+      className="candy-sky relative flex min-h-[100svh] items-center justify-center overflow-hidden text-[var(--ink)]"
+      style={{ ['--cursor-fg' as string]: 'var(--ink)' }}
     >
       <div
         data-ambient
-        className="pointer-events-none absolute inset-[-8%] bg-cover bg-center opacity-70"
+        className="pointer-events-none absolute inset-[-8%] bg-cover bg-center opacity-55"
         style={{
           backgroundImage: `url(${opening.posterSrc})`,
-          filter: 'saturate(0.85) contrast(1.05)',
+          filter: 'saturate(1.15) contrast(1.02)',
         }}
       />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_20%,rgba(10,14,22,0.88)_75%)]" />
-      <div className="film-grain absolute inset-0 opacity-40" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba_10%,rgba(255,230,242,0.82)_70%)]" />
+      <div className="film-grain absolute inset-0" />
 
       <div className="relative z-10 mx-auto flex w-full max-w-4xl flex-col items-center px-6 text-center">
         <p
           data-open-reveal
-          className="mb-8 text-[0.72rem] tracking-[0.42em] uppercase text-[var(--gold)]"
+          className="mb-8 text-[0.78rem] font-bold tracking-[0.28em] uppercase text-[var(--bow)]"
         >
           {opening.introLine}
         </p>
 
         <div
           data-open-reveal
-          className="relative aspect-video w-full max-w-3xl overflow-hidden border border-[var(--ivory)]/15 bg-black/40 shadow-[0_40px_120px_rgba(0,0,0,0.45)]"
+          className="relative aspect-video w-full max-w-3xl overflow-hidden rounded-[1.75rem] border-4 border-white bg-white/50 shadow-[0_30px_80px_rgba(255,79,135,0.25)]"
         >
           <video
             ref={videoRef}
@@ -146,18 +146,18 @@ export function OpeningChapter({ onComplete }: Props) {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 onClick={handlePlay}
-                className="absolute inset-0 flex flex-col items-center justify-center gap-5 bg-black/35 backdrop-blur-[2px]"
+                className="absolute inset-0 flex flex-col items-center justify-center gap-5 bg-[var(--bow)]/25 backdrop-blur-[2px]"
                 data-cursor-hover
                 aria-label="Play birthday message"
               >
-                <span className="flex h-20 w-20 items-center justify-center rounded-full border border-[var(--ivory)]/40 bg-[var(--ivory)]/10 transition-transform hover:scale-105">
+                <span className="flex h-20 w-20 items-center justify-center rounded-full border-4 border-white bg-[var(--bow)] shadow-[0_12px_30px_rgba(239,62,86,0.35)] transition-transform hover:scale-105">
                   {phase === 'loading' ? (
-                    <span className="h-8 w-8 animate-spin rounded-full border border-[var(--ivory)]/30 border-t-[var(--gold)]" />
+                    <span className="h-8 w-8 animate-spin rounded-full border-2 border-white/30 border-t-white" />
                   ) : (
-                    <Play className="ml-1 text-[var(--ivory)]" size={28} fill="currentColor" />
+                    <Play className="ml-1 text-white" size={28} fill="currentColor" />
                   )}
                 </span>
-                <span className="text-[0.7rem] tracking-[0.28em] uppercase text-[var(--ivory)]/80">
+                <span className="text-[0.75rem] font-bold tracking-[0.22em] uppercase text-[var(--ink)]">
                   {phase === 'loading' ? 'Preparing…' : 'Play message'}
                 </span>
               </motion.button>
@@ -170,26 +170,26 @@ export function OpeningChapter({ onComplete }: Props) {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                className="absolute inset-0 flex flex-col items-center justify-center bg-[var(--midnight)] px-8 text-center"
+                className="absolute inset-0 flex flex-col items-center justify-center bg-[linear-gradient(160deg,#ffe6f2,#eaf7ff)] px-8 text-center"
               >
-                <p className="font-display text-[clamp(1.8rem,5vw,3.2rem)] leading-tight text-[var(--ivory)]">
-                  A personal message
+                <p className="font-display text-[clamp(1.8rem,5vw,3.2rem)] leading-tight text-[var(--bow)]">
+                  A sparkly message
                   <br />
                   is on its way.
                 </p>
-                <p className="mt-4 max-w-md text-sm text-[var(--ivory)]/60">
-                  Add <code className="text-[var(--gold)]">celebrity-wish.mp4</code> to{' '}
-                  <code className="text-[var(--gold)]">/public/assets/opening/</code> to replace
-                  this cinematic placeholder.
+                <p className="mt-4 max-w-md text-sm text-[var(--ink-muted)]">
+                  Add <code className="text-[var(--cherry)]">celebrity-wish.mp4</code> to{' '}
+                  <code className="text-[var(--cherry)]">/public/assets/opening/</code> to replace
+                  this placeholder.
                 </p>
               </motion.div>
             )}
           </AnimatePresence>
 
           {phase === 'playing' && (
-            <div className="absolute inset-x-0 bottom-0 h-[2px] bg-[var(--ivory)]/15">
+            <div className="absolute inset-x-0 bottom-0 h-[3px] bg-white/40">
               <div
-                className="h-full bg-[var(--gold)] transition-[width] duration-200"
+                className="h-full bg-[var(--bow)] transition-[width] duration-200"
                 style={{ width: `${progress * 100}%` }}
               />
             </div>
@@ -198,7 +198,7 @@ export function OpeningChapter({ onComplete }: Props) {
 
         <div
           data-open-reveal
-          className="mt-8 flex items-center gap-3 text-[0.65rem] tracking-[0.24em] uppercase text-[var(--ivory)]/55"
+          className="mt-8 flex items-center gap-3 text-[0.7rem] font-bold tracking-[0.2em] uppercase text-[var(--ink-muted)]"
         >
           <Volume2 size={14} />
           <span>Sound on · {opening.durationHint}</span>
@@ -208,7 +208,7 @@ export function OpeningChapter({ onComplete }: Props) {
           <button
             type="button"
             onClick={finish}
-            className="mt-10 text-[0.65rem] tracking-[0.28em] uppercase text-[var(--ivory)]/40 underline-offset-4 transition hover:text-[var(--ivory)]/70 hover:underline"
+            className="mt-10 text-[0.7rem] font-bold tracking-[0.22em] uppercase text-[var(--ink-muted)] underline-offset-4 transition hover:text-[var(--bow)] hover:underline"
           >
             Skip intro
           </button>

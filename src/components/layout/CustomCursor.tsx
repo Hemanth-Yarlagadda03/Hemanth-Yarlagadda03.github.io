@@ -43,7 +43,7 @@ export function CustomCursor() {
   return (
     <motion.div
       aria-hidden
-      className="pointer-events-none fixed top-0 left-0 z-[100] hidden mix-blend-difference md:block"
+      className="pointer-events-none fixed top-0 left-0 z-[100] hidden md:block"
       style={{
         x: sx,
         y: sy,
@@ -51,12 +51,16 @@ export function CustomCursor() {
       }}
     >
       <div
-        className="rounded-full bg-[var(--ivory)] transition-[width,height,margin] duration-300"
+        className="transition-[width,height,margin,background] duration-300"
         style={{
-          width: hovering ? 44 : 12,
-          height: hovering ? 44 : 12,
-          marginLeft: hovering ? -22 : -6,
-          marginTop: hovering ? -22 : -6,
+          width: hovering ? 36 : 16,
+          height: hovering ? 36 : 16,
+          marginLeft: hovering ? -18 : -8,
+          marginTop: hovering ? -18 : -8,
+          background: hovering ? 'var(--bow)' : 'var(--rose)',
+          borderRadius: hovering ? '40% 40% 40% 0' : '50%',
+          transform: hovering ? 'rotate(-45deg)' : undefined,
+          boxShadow: '0 0 0 3px rgba(255,255,255,0.65)',
         }}
       />
     </motion.div>

@@ -80,7 +80,7 @@ export default function App() {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-            className="bg-[var(--ivory)]"
+            className="candy-sky"
             style={{ ['--cursor-fg' as string]: 'var(--ink)' }}
           >
             <ChapterProgress />
@@ -90,8 +90,8 @@ export default function App() {
             <FriendsChapter />
             <VideoMemoriesChapter />
             <FinaleChapter />
-            <footer className="border-t border-[var(--cherry)]/15 bg-[var(--ivory)] px-6 py-10 text-center text-[0.68rem] tracking-[0.22em] uppercase text-[var(--ink-muted)]">
-              Happy birthday · {siteContent.recipientName}
+            <footer className="border-t border-[var(--bow)]/20 bg-white/50 px-6 py-10 text-center text-[0.75rem] font-bold tracking-[0.18em] uppercase text-[var(--ink-muted)]">
+              Happy birthday · {siteContent.recipientName} · stay sparkly
             </footer>
           </motion.main>
         )}

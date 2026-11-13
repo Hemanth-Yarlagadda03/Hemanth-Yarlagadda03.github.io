@@ -103,7 +103,7 @@ export function FriendsChapter() {
     <section
       ref={rootRef}
       id="friends"
-      className="relative bg-[var(--ivory)] py-24 md:py-32"
+      className="relative bg-white/40 py-24 md:py-32"
       style={{ ['--cursor-fg' as string]: 'var(--ink)' }}
     >
       <div className="mx-auto max-w-6xl px-6">

@@ -78,7 +78,7 @@ export function StoryChapter() {
     <section
       ref={rootRef}
       id="story"
-      className="relative overflow-hidden bg-[var(--ivory)] py-24 md:py-32"
+      className="relative overflow-hidden bg-transparent py-24 md:py-32"
       style={{ ['--cursor-fg' as string]: 'var(--ink)' }}
     >
       <div className="mx-auto max-w-6xl px-6">

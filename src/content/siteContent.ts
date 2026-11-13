@@ -51,17 +51,17 @@ export const siteContent = {
   recipientName: 'Pushkara',
 
   opening: {
-    introLine: 'Pushkara, someone has a message for you…',
+    introLine: 'Pushkara, a sparkly surprise is waiting…',
     /** Replace with /assets/opening/celebrity-wish.mp4 */
     videoSrc: '/assets/opening/celebrity-wish.mp4',
     /** Replace with /assets/opening/poster.jpg */
     posterSrc: '/assets/opening/poster.svg',
-    durationHint: 'A short surprise awaits',
+    durationHint: 'Cute message ahead',
   },
 
   reveal: {
     headline: 'HAPPY BIRTHDAY',
-    subline: 'A little sparkle, made just for you.',
+    subline: 'Unicorn energy only — made just for you, Pushkara.',
     cta: "There's more to this…",
   },
 
@@ -326,14 +326,14 @@ export const siteContent = {
 
   finale: {
     eyebrow: 'The Final Surprise',
-    headline: 'And still —',
+    headline: 'Keep sparkling,',
     message:
       'Placeholder final message. Write the one line you want Pushkara to remember most.',
-    closingLine: 'Happy birthday, Pushkara. You are so loved.',
+    closingLine: 'Happy birthday, Pushkara. Soft, bright, and so loved.',
     /** Optional final photo or video */
     mediaSrc: '/assets/photos/finale.svg',
     mediaType: 'image' as const,
-    revealLabel: 'One last thing',
+    revealLabel: 'One last sparkle',
     secretMessage:
       'Placeholder secret — a private birthday line revealed only at the end.',
   },

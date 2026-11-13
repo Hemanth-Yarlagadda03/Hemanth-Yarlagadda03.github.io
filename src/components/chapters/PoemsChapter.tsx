@@ -44,10 +44,10 @@ export function PoemsChapter() {
     <section
       ref={rootRef}
       id="poems"
-      className="relative bg-[var(--ink)] py-24 text-[var(--ivory)] md:py-36"
+      className="relative bg-[linear-gradient(180deg,#4a2a3e_0%,#6b3d58_100%)] py-24 text-[var(--ivory)] md:py-36"
       style={{ ['--cursor-fg' as string]: 'var(--ivory)' }}
     >
-      <div className="absolute inset-0 opacity-[0.07] [background-image:radial-gradient(circle_at_1px_1px,var(--ivory)_1px,transparent_0)] [background-size:22px_22px]" />
+      <div className="absolute inset-0 opacity-[0.12] [background-image:radial-gradient(circle_at_1px_1px,#ff9ec4_1px,transparent_0)] [background-size:22px_22px]" />
       <div className="relative mx-auto max-w-4xl px-6">
         <SectionHeading
           eyebrow={poems.eyebrow}

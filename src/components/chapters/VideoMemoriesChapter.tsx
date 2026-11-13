@@ -82,7 +82,7 @@ export function VideoMemoriesChapter() {
     <section
       ref={rootRef}
       id="videos"
-      className="relative bg-[var(--midnight)] py-24 text-[var(--ivory)] md:py-32"
+      className="relative bg-[linear-gradient(180deg,#5a2940_0%,#7a3d5c_100%)] py-24 text-[var(--ivory)] md:py-32"
       style={{ ['--cursor-fg' as string]: 'var(--ivory)' }}
     >
       <div className="mx-auto max-w-6xl px-6">

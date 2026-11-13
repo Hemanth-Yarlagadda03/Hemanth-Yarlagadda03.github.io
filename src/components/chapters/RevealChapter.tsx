@@ -2,11 +2,21 @@ import { useEffect, useRef } from 'react'
 import gsap from 'gsap'
 import { siteContent } from '../../content/siteContent'
 import { MagneticButton } from '../ui/MagneticButton'
+import { SparkleField } from '../ui/SparkleField'
 import { useReducedMotion } from '../../hooks/useReducedMotion'
 
 interface Props {
   onContinue: () => void
 }
+
+const PASTELS = [
+  'rgba(255, 79, 135, 0.75)',
+  'rgba(154, 240, 216, 0.8)',
+  'rgba(228, 210, 255, 0.85)',
+  'rgba(200, 232, 255, 0.85)',
+  'rgba(255, 231, 163, 0.85)',
+  'rgba(255, 158, 196, 0.85)',
+]
 
 export function RevealChapter({ onContinue }: Props) {
   const { recipientName, reveal } = siteContent
@@ -29,24 +39,24 @@ export function RevealChapter({ onContinue }: Props) {
 
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({ defaults: { ease: 'power3.out' } })
-      tl.fromTo('[data-veil]', { opacity: 1 }, { opacity: 0, duration: 1.4 })
+      tl.fromTo('[data-veil]', { opacity: 1 }, { opacity: 0, duration: 1.2 })
         .fromTo(
           '[data-reveal-line]',
           { yPercent: 110, opacity: 0 },
-          { yPercent: 0, opacity: 1, duration: 1.35, stagger: 0.18 },
-          '-=0.6',
+          { yPercent: 0, opacity: 1, duration: 1.2, stagger: 0.16 },
+          '-=0.5',
         )
         .fromTo(
           '[data-reveal-sub]',
           { opacity: 0, y: 24 },
-          { opacity: 1, y: 0, duration: 1 },
-          '-=0.4',
+          { opacity: 1, y: 0, duration: 0.9 },
+          '-=0.35',
         )
         .fromTo(
           '[data-reveal-cta]',
-          { opacity: 0, y: 20 },
-          { opacity: 1, y: 0, duration: 0.9 },
-          '-=0.35',
+          { opacity: 0, y: 20, scale: 0.92 },
+          { opacity: 1, y: 0, scale: 1, duration: 0.85 },
+          '-=0.3',
         )
     }, el)
 
@@ -63,12 +73,14 @@ export function RevealChapter({ onContinue }: Props) {
     let raf = 0
     let width = 0
     let height = 0
-    const particles = Array.from({ length: 42 }, () => ({
+    const particles = Array.from({ length: 55 }, (_, i) => ({
       x: Math.random(),
       y: Math.random(),
-      r: 0.6 + Math.random() * 1.8,
-      s: 0.15 + Math.random() * 0.45,
-      a: 0.15 + Math.random() * 0.45,
+      r: 1.2 + Math.random() * 3.2,
+      s: 0.2 + Math.random() * 0.55,
+      a: 0.35 + Math.random() * 0.5,
+      color: PASTELS[i % PASTELS.length],
+      spin: Math.random() * Math.PI,
     }))
 
     const resize = () => {
@@ -82,18 +94,41 @@ export function RevealChapter({ onContinue }: Props) {
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
     }
 
+    const drawStar = (cx: number, cy: number, r: number, color: string) => {
+      ctx.save()
+      ctx.translate(cx, cy)
+      ctx.fillStyle = color
+      ctx.beginPath()
+      for (let i = 0; i < 5; i++) {
+        const a = (i * 4 * Math.PI) / 5 - Math.PI / 2
+        const x = Math.cos(a) * r
+        const y = Math.sin(a) * r
+        if (i === 0) ctx.moveTo(x, y)
+        else ctx.lineTo(x, y)
+      }
+      ctx.closePath()
+      ctx.fill()
+      ctx.restore()
+    }
+
     const draw = () => {
       ctx.clearRect(0, 0, width, height)
       for (const p of particles) {
-        p.y -= p.s * 0.0015
+        p.y -= p.s * 0.0018
+        p.spin += 0.02
         if (p.y < -0.05) {
           p.y = 1.05
           p.x = Math.random()
         }
-        ctx.beginPath()
-        ctx.fillStyle = `rgba(255, 182, 210, ${p.a})`
-        ctx.arc(p.x * width, p.y * height, p.r, 0, Math.PI * 2)
-        ctx.fill()
+        const px = p.x * width
+        const py = p.y * height
+        if (p.r > 2.4) drawStar(px, py, p.r, p.color)
+        else {
+          ctx.beginPath()
+          ctx.fillStyle = p.color
+          ctx.arc(px, py, p.r, 0, Math.PI * 2)
+          ctx.fill()
+        }
       }
       raf = requestAnimationFrame(draw)
     }
@@ -110,37 +145,54 @@ export function RevealChapter({ onContinue }: Props) {
   return (
     <section
       ref={rootRef}
-      className="relative flex min-h-[100svh] items-center justify-center overflow-hidden bg-[var(--berry)] text-[var(--ivory)]"
-      style={{ ['--cursor-fg' as string]: 'var(--ivory)' }}
+      className="candy-sky relative flex min-h-[100svh] items-center justify-center overflow-hidden text-[var(--ink)]"
+      style={{ ['--cursor-fg' as string]: 'var(--ink)' }}
     >
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_30%_20%,rgba(255,143,184,0.35),transparent_50%),radial-gradient(ellipse_at_80%_80%,rgba(255,46,126,0.25),transparent_45%)]" />
+      <div
+        className="cloud-blob"
+        style={{ width: '42vw', height: '18vw', top: '8%', left: '-6%', background: 'rgba(255,255,255,0.65)' }}
+      />
+      <div
+        className="cloud-blob"
+        style={{ width: '34vw', height: '14vw', top: '18%', right: '-4%', background: 'rgba(200,232,255,0.55)' }}
+      />
+      <div
+        className="cloud-blob"
+        style={{ width: '38vw', height: '16vw', bottom: '10%', left: '20%', background: 'rgba(154,240,216,0.35)' }}
+      />
+      <SparkleField />
       <canvas ref={canvasRef} className="pointer-events-none absolute inset-0" aria-hidden />
-      {/* pointer-events-none: veil must never block the CTA after fade */}
       <div
         data-veil
-        className="pointer-events-none absolute inset-0 z-20 bg-[var(--midnight)]"
+        className="pointer-events-none absolute inset-0 z-20 bg-[var(--paper)]"
       />
 
       <div className="relative z-30 mx-auto max-w-6xl px-6 text-center">
+        <p
+          data-reveal-sub
+          className="mb-4 text-[0.75rem] font-bold tracking-[0.35em] uppercase text-[var(--bow)]"
+        >
+          ♡ sparkle time ♡
+        </p>
         <div className="overflow-hidden">
           <p
             data-reveal-line
-            className="font-display text-[clamp(3.5rem,14vw,9.5rem)] leading-[0.86] tracking-[-0.03em]"
+            className="font-display text-[clamp(3rem,12vw,7.5rem)] leading-[0.9] text-[var(--bow)]"
           >
             {reveal.headline}
           </p>
         </div>
-        <div className="mt-2 overflow-hidden md:mt-4">
+        <div className="mt-3 overflow-hidden md:mt-5">
           <p
             data-reveal-line
-            className="font-display text-[clamp(2rem,7vw,4.8rem)] italic leading-none text-[var(--rose)]"
+            className="font-script text-[clamp(2.6rem,9vw,5.5rem)] leading-none text-[var(--ink)]"
           >
             {recipientName}
           </p>
         </div>
         <p
           data-reveal-sub
-          className="mx-auto mt-8 max-w-md text-[1.05rem] text-[var(--ivory)]/75"
+          className="mx-auto mt-8 max-w-md text-[1.1rem] font-medium text-[var(--ink-muted)]"
         >
           {reveal.subline}
         </p>

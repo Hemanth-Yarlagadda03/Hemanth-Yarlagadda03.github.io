@@ -1,18 +1,17 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080">
   <defs>
     <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#0e141c"/>
-      <stop offset="55%" stop-color="#1a2332"/>
-      <stop offset="100%" stop-color="#6b7c91"/>
+      <stop offset="0%" stop-color="#FFE6F2"/>
+      <stop offset="45%" stop-color="#EAF7FF"/>
+      <stop offset="100%" stop-color="#E8FFF7"/>
     </linearGradient>
-    <radialGradient id="v" cx="30%" cy="25%" r="70%">
-      <stop offset="0%" stop-color="#e8e0d4" stop-opacity="0.18"/>
-      <stop offset="100%" stop-color="#e8e0d4" stop-opacity="0"/>
-    </radialGradient>
   </defs>
   <rect width="1920" height="1080" fill="url(#g)"/>
-  <rect width="1920" height="1080" fill="url(#v)"/>
-  <circle cx="1382.3999999999999" cy="302.40000000000003" r="194.4" fill="#e8e0d4" fill-opacity="0.08"/>
-  <text x="48" y="1008" fill="#e8e0d4" fill-opacity="0.85" font-family="Georgia, serif" font-size="28">A MESSAGE</text>
-  <text x="48" y="1038" fill="#e8e0d4" fill-opacity="0.55" font-family="Helvetica, Arial, sans-serif" font-size="14" letter-spacing="3">OPENING VIDEO POSTER</text>
+  <circle cx="420" cy="280" r="160" fill="#FF9EC4" fill-opacity="0.45"/>
+  <circle cx="1500" cy="720" r="220" fill="#9AF0D8" fill-opacity="0.4"/>
+  <circle cx="1180" cy="260" r="120" fill="#E4D2FF" fill-opacity="0.55"/>
+  <circle cx="700" cy="820" r="140" fill="#FFE7A3" fill-opacity="0.5"/>
+  <path d="M960 430c40-70 140-70 180 0 20 35 10 70-20 95l-70 55-70-55c-30-25-40-60-20-95z" fill="#EF3E56"/>
+  <text x="960" y="620" text-anchor="middle" fill="#5A2940" font-family="Georgia, serif" font-size="64">for Pushkara</text>
+  <text x="960" y="680" text-anchor="middle" fill="#FF4F87" font-family="Helvetica, Arial, sans-serif" font-size="22" letter-spacing="6">UNICORN MODE</text>
 </svg>

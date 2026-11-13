@@ -9,10 +9,10 @@ export function MusicToggle() {
     <button
       type="button"
       onClick={toggle}
-      className="fixed top-5 right-5 z-50 flex items-center gap-2 border border-current/20 px-3 py-2 text-[0.65rem] tracking-[0.2em] uppercase backdrop-blur-sm transition-opacity hover:opacity-80"
+      className="fixed top-5 right-5 z-50 flex items-center gap-2 rounded-full border-2 border-white/80 px-3.5 py-2 text-[0.68rem] font-bold tracking-[0.16em] uppercase shadow-[0_8px_24px_rgba(255,79,135,0.2)] backdrop-blur-sm transition-opacity hover:opacity-90"
       style={{
-        color: 'var(--cursor-fg, var(--ivory))',
-        background: 'color-mix(in oklab, var(--midnight) 45%, transparent)',
+        color: 'var(--ink)',
+        background: 'color-mix(in oklab, white 78%, var(--rose))',
       }}
       aria-pressed={enabled}
       aria-label={enabled ? 'Mute background music' : 'Play background music'}

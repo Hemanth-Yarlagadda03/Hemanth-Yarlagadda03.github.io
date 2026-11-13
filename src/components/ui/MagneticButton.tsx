@@ -48,15 +48,15 @@ export function MagneticButton({
       onMouseLeave={onLeave}
       onClick={onClick}
       className={clsx(
-        'magnetic-btn relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-full px-8 py-4 text-[0.72rem] font-semibold tracking-[0.18em] uppercase transition-colors duration-300',
+        'magnetic-btn relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-full px-9 py-4 text-[0.78rem] font-bold tracking-[0.12em] uppercase transition-colors duration-300',
         variant === 'solid' &&
           'bg-[var(--ink)] text-[var(--ivory)] hover:bg-[var(--cherry)]',
         variant === 'ghost' &&
-          'border border-[var(--ink)]/25 text-[var(--ink)] hover:border-[var(--cherry)] hover:text-[var(--cherry)]',
+          'border-2 border-[var(--cherry)]/35 text-[var(--ink)] hover:border-[var(--cherry)] hover:text-[var(--cherry)]',
         variant === 'gold' &&
-          'bg-[var(--gold)] text-[var(--ink)] hover:bg-[var(--gold-soft)]',
+          'bg-[var(--butter)] text-[var(--ink)] hover:bg-[var(--mint)]',
         variant === 'pop' &&
-          'bg-[var(--cherry)] text-white shadow-[0_12px_40px_rgba(255,46,126,0.35)] hover:bg-[var(--rose)] hover:text-[var(--ink)]',
+          'border-2 border-white/70 bg-[var(--bow)] text-white shadow-[0_14px_36px_rgba(239,62,86,0.35)] hover:bg-[var(--cherry)] hover:shadow-[0_16px_40px_rgba(255,79,135,0.4)]',
         className,
       )}
     >
