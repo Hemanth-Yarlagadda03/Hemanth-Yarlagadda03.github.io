@@ -1,11 +1,30 @@
-# Group Project UID(Phase 1)
+# A Birthday Story
 
-## School Website
+An immersive, cinematic birthday experience built with React, TypeScript, Vite, Tailwind CSS, GSAP, and Framer Motion.
 
-* Mahesh Kumar Chinta AM.EN.U4CSE21263
-* G V Sai Kowshik AM.EN.U4CSE21271
-* N Amarnath Rao AM.EN.U4CSE21267
-* Hemanth Lakshman Yarlagadda AM.EN.U4CSE21227
-* Mannam Subbarao AM.EN.U4CSE21264
+## Develop
 
+```bash
+npm install
+npm run dev
+```
 
+## Build
+
+```bash
+npm run build
+npm run preview
+```
+
+## Customise content
+
+Edit **`src/content/siteContent.ts`** and drop media into **`public/assets/`**.  
+Full instructions: **[ASSET_GUIDE.md](./ASSET_GUIDE.md)**.
+
+## GitHub Pages
+
+Push to `main`. The workflow in `.github/workflows/deploy.yml` builds and deploys.
+
+In the repo: **Settings → Pages → Build and deployment → Source: GitHub Actions**.
+
+Site URL: `https://hemanth-yarlagadda03.github.io/`

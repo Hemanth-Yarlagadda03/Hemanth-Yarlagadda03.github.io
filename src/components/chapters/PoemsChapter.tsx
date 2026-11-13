@@ -1,0 +1,100 @@
+import { useEffect, useRef } from 'react'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { siteContent } from '../../content/siteContent'
+import { SectionHeading } from '../ui/SectionHeading'
+import { useReducedMotion } from '../../hooks/useReducedMotion'
+
+gsap.registerPlugin(ScrollTrigger)
+
+export function PoemsChapter() {
+  const { poems } = siteContent
+  const rootRef = useRef<HTMLElement>(null)
+  const reduced = useReducedMotion()
+
+  useEffect(() => {
+    const root = rootRef.current
+    if (!root || reduced) return
+
+    const ctx = gsap.context(() => {
+      gsap.utils.toArray<HTMLElement>('[data-poem]').forEach((poem) => {
+        const lines = poem.querySelectorAll('[data-line]')
+        gsap.fromTo(
+          lines,
+          { y: 28, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.9,
+            stagger: 0.08,
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: poem,
+              start: 'top 72%',
+            },
+          },
+        )
+      })
+    }, root)
+
+    return () => ctx.revert()
+  }, [reduced])
+
+  return (
+    <section
+      ref={rootRef}
+      id="poems"
+      className="relative bg-[var(--ink)] py-24 text-[var(--ivory)] md:py-36"
+      style={{ ['--cursor-fg' as string]: 'var(--ivory)' }}
+    >
+      <div className="absolute inset-0 opacity-[0.07] [background-image:radial-gradient(circle_at_1px_1px,var(--ivory)_1px,transparent_0)] [background-size:22px_22px]" />
+      <div className="relative mx-auto max-w-4xl px-6">
+        <SectionHeading
+          eyebrow={poems.eyebrow}
+          title={poems.title}
+          subtitle={poems.subtitle}
+          tone="dark"
+          align="center"
+        />
+
+        <div className="space-y-28 md:space-y-40">
+          {poems.entries.map((poem, index) => (
+            <article
+              key={poem.id}
+              data-poem
+              className={`relative ${index % 2 === 1 ? 'md:ml-auto md:max-w-xl md:text-right' : 'md:max-w-xl'}`}
+            >
+              <p
+                data-line
+                className="mb-6 text-[0.65rem] tracking-[0.35em] uppercase text-[var(--gold)]"
+              >
+                {poem.dedication}
+              </p>
+              <h3
+                data-line
+                className="font-display text-[clamp(2rem,5vw,3.4rem)] leading-tight"
+              >
+                {poem.title}
+              </h3>
+              <div className="mt-8 space-y-3 font-display text-[clamp(1.15rem,2.4vw,1.45rem)] leading-[1.85] text-[var(--ivory)]/85">
+                {poem.lines.map((line, i) =>
+                  line === '' ? (
+                    <div key={`${poem.id}-break-${i}`} data-line className="h-5" />
+                  ) : (
+                    <p key={`${poem.id}-${i}`} data-line>
+                      {line}
+                    </p>
+                  ),
+                )}
+              </div>
+              <div
+                aria-hidden
+                className={`mt-10 h-px w-24 bg-[var(--gold)]/50 ${index % 2 === 1 ? 'md:ml-auto' : ''}`}
+              />
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}

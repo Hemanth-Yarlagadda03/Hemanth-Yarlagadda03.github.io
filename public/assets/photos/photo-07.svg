@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="900" viewBox="0 0 1400 900">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#2a2418"/>
+      <stop offset="55%" stop-color="#7a6340"/>
+      <stop offset="100%" stop-color="#c4a574"/>
+    </linearGradient>
+    <radialGradient id="v" cx="30%" cy="25%" r="70%">
+      <stop offset="0%" stop-color="#f4ede3" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#f4ede3" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1400" height="900" fill="url(#g)"/>
+  <rect width="1400" height="900" fill="url(#v)"/>
+  <circle cx="1008.0" cy="252.00000000000003" r="162.0" fill="#f4ede3" fill-opacity="0.08"/>
+  <text x="48" y="828" fill="#f4ede3" fill-opacity="0.85" font-family="Georgia, serif" font-size="28">PHOTO 07</text>
+  <text x="48" y="858" fill="#f4ede3" fill-opacity="0.55" font-family="Helvetica, Arial, sans-serif" font-size="14" letter-spacing="3">REPLACE · LANDSCAPE</text>
+</svg>
