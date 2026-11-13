@@ -25,15 +25,16 @@ Full instructions: **[ASSET_GUIDE.md](./ASSET_GUIDE.md)**.
 
 Site URL: `https://hemanth-yarlagadda03.github.io/`
 
-**Option A — recommended (GitHub Actions)**  
-1. Push `main`  
-2. Repo **Settings → Pages → Source: GitHub Actions**  
-3. The workflow in `.github/workflows/deploy.yml` builds and deploys `dist/`
+`npm run build` publishes the production site to the **repo root** and to **`docs/`**, so either Pages setting works:
 
-**Option B — quick fallback (`/docs` folder)**  
-A production build is committed under `docs/`.  
-Set **Settings → Pages → Source: Deploy from a branch → Branch: `main` → Folder: `/docs`**.
+- Branch `main` → folder `/` (root), or  
+- Branch `main` → folder `/docs`, or  
+- **GitHub Actions** via `.github/workflows/deploy.yml`
+
+Do **not** leave Pages serving the Vite source `index.html` (the one that loads `/src/main.tsx`) — that causes a MIME type error.
 
 ```bash
+npm run build
+git add -A && git commit -m "Update site"
 git push origin main
 ```

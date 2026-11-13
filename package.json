@@ -4,8 +4,8 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc -b && vite build",
+    "dev": "node scripts/ensure-dev-index.mjs && vite",
+    "build": "node scripts/ensure-dev-index.mjs && tsc -b && vite build && node scripts/sync-pages.mjs",
     "lint": "oxlint",
     "preview": "vite preview"
   },

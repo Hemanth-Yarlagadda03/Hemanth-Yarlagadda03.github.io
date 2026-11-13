@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="1000" viewBox="0 0 800 1000">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0e141c"/>
+      <stop offset="55%" stop-color="#1a2332"/>
+      <stop offset="100%" stop-color="#6b7c91"/>
+    </linearGradient>
+    <radialGradient id="v" cx="30%" cy="25%" r="70%">
+      <stop offset="0%" stop-color="#e8e0d4" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#e8e0d4" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="800" height="1000" fill="url(#g)"/>
+  <rect width="800" height="1000" fill="url(#v)"/>
+  <circle cx="576.0" cy="280.0" r="144.0" fill="#e8e0d4" fill-opacity="0.08"/>
+  <text x="48" y="928" fill="#e8e0d4" fill-opacity="0.85" font-family="Georgia, serif" font-size="28">FRIEND 02</text>
+  <text x="48" y="958" fill="#e8e0d4" fill-opacity="0.55" font-family="Helvetica, Arial, sans-serif" font-size="14" letter-spacing="3">REPLACE · OPTIONAL PHOTO</text>
+</svg>

@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1500" viewBox="0 0 1200 1500">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#3d1522"/>
+      <stop offset="55%" stop-color="#6b2435"/>
+      <stop offset="100%" stop-color="#c4a4a8"/>
+    </linearGradient>
+    <radialGradient id="v" cx="30%" cy="25%" r="70%">
+      <stop offset="0%" stop-color="#f4ede3" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#f4ede3" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="1500" fill="url(#g)"/>
+  <rect width="1200" height="1500" fill="url(#v)"/>
+  <circle cx="864.0" cy="420.00000000000006" r="216.0" fill="#f4ede3" fill-opacity="0.08"/>
+  <text x="48" y="1428" fill="#f4ede3" fill-opacity="0.85" font-family="Georgia, serif" font-size="28">FINALE</text>
+  <text x="48" y="1458" fill="#f4ede3" fill-opacity="0.55" font-family="Helvetica, Arial, sans-serif" font-size="14" letter-spacing="3">REPLACE · FINAL IMAGE</text>
+</svg>

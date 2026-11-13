@@ -12,6 +12,9 @@ dist
 dist-ssr
 *.local
 
+# Root index.html / assets are production (synced by npm run build) and should be committed.
+# Development entry is index.source.html.
+
 # Editor
 .vscode/*
 !.vscode/extensions.json

@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0e141c"/>
+      <stop offset="55%" stop-color="#1a2332"/>
+      <stop offset="100%" stop-color="#6b7c91"/>
+    </linearGradient>
+    <radialGradient id="v" cx="30%" cy="25%" r="70%">
+      <stop offset="0%" stop-color="#e8e0d4" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#e8e0d4" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1920" height="1080" fill="url(#g)"/>
+  <rect width="1920" height="1080" fill="url(#v)"/>
+  <circle cx="1382.3999999999999" cy="302.40000000000003" r="194.4" fill="#e8e0d4" fill-opacity="0.08"/>
+  <text x="48" y="1008" fill="#e8e0d4" fill-opacity="0.85" font-family="Georgia, serif" font-size="28">A MESSAGE</text>
+  <text x="48" y="1038" fill="#e8e0d4" fill-opacity="0.55" font-family="Helvetica, Arial, sans-serif" font-size="14" letter-spacing="3">OPENING VIDEO POSTER</text>
+</svg>
