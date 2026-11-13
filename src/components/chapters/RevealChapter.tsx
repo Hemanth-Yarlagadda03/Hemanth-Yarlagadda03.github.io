@@ -19,7 +19,11 @@ export function RevealChapter({ onContinue }: Props) {
     if (!el) return
 
     if (reduced) {
-      gsap.set('[data-reveal-line]', { opacity: 1, y: 0 })
+      gsap.set('[data-reveal-line], [data-reveal-sub], [data-reveal-cta], [data-veil]', {
+        opacity: 1,
+        y: 0,
+        yPercent: 0,
+      })
       return
     }
 
