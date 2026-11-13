@@ -44,7 +44,7 @@ function FriendCard({
           />
         </div>
       )}
-      <p className="text-[0.65rem] tracking-[0.28em] uppercase text-[var(--burgundy)]">
+      <p className="text-[0.65rem] tracking-[0.28em] uppercase text-[var(--cherry)]">
         {friend.relationship}
       </p>
       <h3 className="mt-2 font-display text-3xl text-[var(--ink)]">{friend.name}</h3>

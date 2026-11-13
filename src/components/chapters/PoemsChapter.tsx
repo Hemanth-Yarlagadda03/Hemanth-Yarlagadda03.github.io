@@ -66,7 +66,7 @@ export function PoemsChapter() {
             >
               <p
                 data-line
-                className="mb-6 text-[0.65rem] tracking-[0.35em] uppercase text-[var(--gold)]"
+                className="mb-6 text-[0.65rem] tracking-[0.35em] uppercase text-[var(--rose)]"
               >
                 {poem.dedication}
               </p>
@@ -89,7 +89,7 @@ export function PoemsChapter() {
               </div>
               <div
                 aria-hidden
-                className={`mt-10 h-px w-24 bg-[var(--gold)]/50 ${index % 2 === 1 ? 'md:ml-auto' : ''}`}
+                className={`mt-10 h-px w-24 bg-[var(--rose)]/50 ${index % 2 === 1 ? 'md:ml-auto' : ''}`}
               />
             </article>
           ))}

@@ -48,10 +48,10 @@ export interface VideoMemory {
 }
 
 export const siteContent = {
-  recipientName: 'Her Name',
+  recipientName: 'Pushkara',
 
   opening: {
-    introLine: 'Someone has a message for you…',
+    introLine: 'Pushkara, someone has a message for you…',
     /** Replace with /assets/opening/celebrity-wish.mp4 */
     videoSrc: '/assets/opening/celebrity-wish.mp4',
     /** Replace with /assets/opening/poster.jpg */
@@ -61,7 +61,7 @@ export const siteContent = {
 
   reveal: {
     headline: 'HAPPY BIRTHDAY',
-    subline: 'This day belongs to you.',
+    subline: 'A little sparkle, made just for you.',
     cta: "There's more to this…",
   },
 
@@ -69,7 +69,7 @@ export const siteContent = {
     eyebrow: 'Chapter 03',
     title: 'The Story of You',
     subtitle:
-      'A curated journal of moments — replace each frame with a real photograph.',
+      'Snapshots, sparkles, and soft moments — swap these frames for real photos.',
     photos: [
       {
         id: 'photo-01',
@@ -141,54 +141,54 @@ export const siteContent = {
   littleThings: {
     eyebrow: 'Chapter 04',
     title: 'Little Things That Make You, You',
-    subtitle: 'Hover, tap, discover — tiny truths, playfully kept.',
+    subtitle: 'Tap a phrase — tiny Pushkara truths, kept playful.',
     items: [
       {
         id: 'lt-01',
-        label: 'The way you laugh',
-        detail: 'Placeholder — replace with an inside joke about her laugh.',
+        label: 'That sparkly laugh',
+        detail: 'Placeholder — replace with a joke about how she lights up a room.',
         accent: 'gold',
       },
       {
         id: 'lt-02',
-        label: 'Favourite ritual',
-        detail: 'Placeholder — morning coffee, late-night playlists, etc.',
+        label: 'Playlist energy',
+        detail: 'Placeholder — her go-to songs, late-night vibes, main-character music.',
         accent: 'rose',
       },
       {
         id: 'lt-03',
-        label: 'Unspoken kindness',
-        detail: 'Placeholder — a habit only close people notice.',
+        label: 'Soft-hearted softie',
+        detail: 'Placeholder — the kind way she shows up for people.',
         accent: 'burgundy',
       },
       {
         id: 'lt-04',
         label: 'Signature phrase',
-        detail: 'Placeholder — something she always says.',
+        detail: 'Placeholder — something Pushkara always says.',
         accent: 'midnight',
       },
       {
         id: 'lt-05',
-        label: 'Quiet superpower',
-        detail: 'Placeholder — how she makes a room feel safer.',
+        label: 'Main-character aura',
+        detail: 'Placeholder — how she walks into a space and the mood lifts.',
         accent: 'gold',
       },
       {
         id: 'lt-06',
         label: 'Guilty pleasure',
-        detail: 'Placeholder — films, snacks, guilty-pleasure songs.',
+        detail: 'Placeholder — snacks, shows, songs she pretends not to love.',
         accent: 'rose',
       },
       {
         id: 'lt-07',
         label: 'Hidden talent',
-        detail: 'Placeholder — something delightful and unexpected.',
+        detail: 'Placeholder — something delightful and unexpected about her.',
         accent: 'burgundy',
       },
       {
         id: 'lt-08',
         label: 'The soft spot',
-        detail: 'Placeholder — animals, sunsets, handwritten notes…',
+        detail: 'Placeholder — animals, aesthetics, little joys she collects.',
         accent: 'midnight',
       },
     ] satisfies LittleThing[],
@@ -197,12 +197,12 @@ export const siteContent = {
   poems: {
     eyebrow: 'Chapter 05',
     title: 'Words That Deserve to Be Read',
-    subtitle: 'A quiet room for poems and letters — replace with your own.',
+    subtitle: 'A pretty page for poems and notes — replace with your own.',
     entries: [
       {
         id: 'poem-01',
         title: 'Placeholder Poem I',
-        dedication: 'For her — replace with your dedication',
+        dedication: 'For Pushkara — replace with your dedication',
         lines: [
           'This line is waiting for your words.',
           'Another line rests here, patient and unfinished.',
@@ -219,7 +219,7 @@ export const siteContent = {
           'Paper remembers what we almost said.',
           'Ink keeps the shape of feeling.',
           '',
-          'Replace every line with something only she would recognise.',
+          'Replace every line with something only Pushkara would recognise.',
         ],
       },
       {
@@ -227,12 +227,12 @@ export const siteContent = {
         title: 'A Letter, Unfolding',
         dedication: 'Optional short letter form',
         lines: [
-          'Dear you,',
+          'Dear Pushkara,',
           '',
           'This is a placeholder letter. Write freely.',
           'Say the things that do not fit in a card.',
           '',
-          'With love,',
+          'With warmth,',
           '—',
         ],
       },
@@ -328,14 +328,14 @@ export const siteContent = {
     eyebrow: 'The Final Surprise',
     headline: 'And still —',
     message:
-      'Placeholder final message. Write the one line you want her to remember most.',
-    closingLine: 'Happy birthday. You are deeply loved.',
+      'Placeholder final message. Write the one line you want Pushkara to remember most.',
+    closingLine: 'Happy birthday, Pushkara. You are so loved.',
     /** Optional final photo or video */
     mediaSrc: '/assets/photos/finale.svg',
     mediaType: 'image' as const,
     revealLabel: 'One last thing',
     secretMessage:
-      'Placeholder secret — a private line revealed only at the end.',
+      'Placeholder secret — a private birthday line revealed only at the end.',
   },
 
   audio: {
@@ -345,8 +345,8 @@ export const siteContent = {
   },
 
   meta: {
-    pageTitle: 'A Birthday Story',
-    description: 'An immersive birthday experience, made for someone special.',
+    pageTitle: 'Happy Birthday, Pushkara',
+    description: 'A sparkly birthday experience made for Pushkara.',
   },
 } as const
 

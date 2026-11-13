@@ -8,10 +8,10 @@ import { useReducedMotion } from '../../hooks/useReducedMotion'
 gsap.registerPlugin(ScrollTrigger)
 
 const accentMap: Record<string, string> = {
-  gold: 'var(--gold)',
+  gold: 'var(--cherry)',
   rose: 'var(--rose)',
   burgundy: 'var(--burgundy)',
-  midnight: 'var(--midnight)',
+  midnight: 'var(--berry)',
 }
 
 export function LittleThingsChapter() {

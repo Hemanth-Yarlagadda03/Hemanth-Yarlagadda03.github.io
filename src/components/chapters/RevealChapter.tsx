@@ -91,7 +91,7 @@ export function RevealChapter({ onContinue }: Props) {
           p.x = Math.random()
         }
         ctx.beginPath()
-        ctx.fillStyle = `rgba(196, 165, 116, ${p.a})`
+        ctx.fillStyle = `rgba(255, 182, 210, ${p.a})`
         ctx.arc(p.x * width, p.y * height, p.r, 0, Math.PI * 2)
         ctx.fill()
       }
@@ -110,14 +110,18 @@ export function RevealChapter({ onContinue }: Props) {
   return (
     <section
       ref={rootRef}
-      className="relative flex min-h-[100svh] items-center justify-center overflow-hidden bg-[var(--burgundy-deep)] text-[var(--ivory)]"
+      className="relative flex min-h-[100svh] items-center justify-center overflow-hidden bg-[var(--berry)] text-[var(--ivory)]"
       style={{ ['--cursor-fg' as string]: 'var(--ivory)' }}
     >
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_30%_20%,rgba(196,165,116,0.22),transparent_50%),radial-gradient(ellipse_at_80%_80%,rgba(26,35,50,0.55),transparent_45%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_30%_20%,rgba(255,143,184,0.35),transparent_50%),radial-gradient(ellipse_at_80%_80%,rgba(255,46,126,0.25),transparent_45%)]" />
       <canvas ref={canvasRef} className="pointer-events-none absolute inset-0" aria-hidden />
-      <div data-veil className="absolute inset-0 z-20 bg-[var(--midnight)]" />
+      {/* pointer-events-none: veil must never block the CTA after fade */}
+      <div
+        data-veil
+        className="pointer-events-none absolute inset-0 z-20 bg-[var(--midnight)]"
+      />
 
-      <div className="relative z-10 mx-auto max-w-6xl px-6 text-center">
+      <div className="relative z-30 mx-auto max-w-6xl px-6 text-center">
         <div className="overflow-hidden">
           <p
             data-reveal-line
@@ -129,19 +133,19 @@ export function RevealChapter({ onContinue }: Props) {
         <div className="mt-2 overflow-hidden md:mt-4">
           <p
             data-reveal-line
-            className="font-display text-[clamp(2rem,7vw,4.8rem)] italic leading-none text-[var(--gold)]"
+            className="font-display text-[clamp(2rem,7vw,4.8rem)] italic leading-none text-[var(--rose)]"
           >
             {recipientName}
           </p>
         </div>
         <p
           data-reveal-sub
-          className="mx-auto mt-8 max-w-md text-[1.05rem] text-[var(--ivory)]/70"
+          className="mx-auto mt-8 max-w-md text-[1.05rem] text-[var(--ivory)]/75"
         >
           {reveal.subline}
         </p>
         <div data-reveal-cta className="mt-12 flex justify-center opacity-0">
-          <MagneticButton variant="gold" onClick={onContinue}>
+          <MagneticButton variant="pop" onClick={onContinue}>
             {reveal.cta}
           </MagneticButton>
         </div>

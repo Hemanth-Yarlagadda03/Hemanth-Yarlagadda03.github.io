@@ -6,7 +6,7 @@ import { useReducedMotion } from '../../hooks/useReducedMotion'
 interface Props {
   children: ReactNode
   className?: string
-  variant?: 'solid' | 'ghost' | 'gold'
+  variant?: 'solid' | 'ghost' | 'gold' | 'pop'
   onClick?: () => void
   type?: 'button' | 'submit' | 'reset'
 }
@@ -48,13 +48,15 @@ export function MagneticButton({
       onMouseLeave={onLeave}
       onClick={onClick}
       className={clsx(
-        'magnetic-btn relative inline-flex items-center justify-center gap-2 overflow-hidden px-8 py-4 text-[0.72rem] font-medium tracking-[0.22em] uppercase transition-colors duration-300',
+        'magnetic-btn relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-full px-8 py-4 text-[0.72rem] font-semibold tracking-[0.18em] uppercase transition-colors duration-300',
         variant === 'solid' &&
-          'bg-[var(--ink)] text-[var(--ivory)] hover:bg-[var(--burgundy)]',
+          'bg-[var(--ink)] text-[var(--ivory)] hover:bg-[var(--cherry)]',
         variant === 'ghost' &&
-          'border border-[var(--ink)]/25 text-[var(--ink)] hover:border-[var(--burgundy)] hover:text-[var(--burgundy)]',
+          'border border-[var(--ink)]/25 text-[var(--ink)] hover:border-[var(--cherry)] hover:text-[var(--cherry)]',
         variant === 'gold' &&
-          'bg-[var(--gold)] text-[var(--midnight)] hover:bg-[var(--gold-soft)]',
+          'bg-[var(--gold)] text-[var(--ink)] hover:bg-[var(--gold-soft)]',
+        variant === 'pop' &&
+          'bg-[var(--cherry)] text-white shadow-[0_12px_40px_rgba(255,46,126,0.35)] hover:bg-[var(--rose)] hover:text-[var(--ink)]',
         className,
       )}
     >

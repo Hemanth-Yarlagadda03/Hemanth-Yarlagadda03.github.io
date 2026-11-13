@@ -58,7 +58,7 @@ export function SectionHeading({
       <p
         data-reveal
         className={`mb-4 text-[0.68rem] tracking-[0.35em] uppercase ${
-          dark ? 'text-[var(--gold)]' : 'text-[var(--burgundy)]'
+          dark ? 'text-[var(--rose)]' : 'text-[var(--cherry)]'
         }`}
       >
         {eyebrow}

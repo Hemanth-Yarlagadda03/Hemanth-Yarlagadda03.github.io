@@ -90,8 +90,8 @@ export default function App() {
             <FriendsChapter />
             <VideoMemoriesChapter />
             <FinaleChapter />
-            <footer className="border-t border-[var(--ink)]/10 bg-[var(--ivory)] px-6 py-10 text-center text-[0.68rem] tracking-[0.22em] uppercase text-[var(--ink-muted)]">
-              Made with care · {siteContent.recipientName}
+            <footer className="border-t border-[var(--cherry)]/15 bg-[var(--ivory)] px-6 py-10 text-center text-[0.68rem] tracking-[0.22em] uppercase text-[var(--ink-muted)]">
+              Happy birthday · {siteContent.recipientName}
             </footer>
           </motion.main>
         )}
