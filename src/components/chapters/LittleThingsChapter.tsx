@@ -12,6 +12,7 @@ const accentMap: Record<string, string> = {
   rose: '#b01048',
   burgundy: '#8e1450',
   midnight: '#4a2a3e',
+  berry: '#d63384',
 }
 
 export function LittleThingsChapter() {
