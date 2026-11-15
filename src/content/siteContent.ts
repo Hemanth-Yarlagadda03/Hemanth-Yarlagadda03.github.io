@@ -112,34 +112,41 @@ export const siteContent = {
       },
       {
         id: 'lt-04',
-        label: 'Your intelligence',
+        label: 'Your talent',
         detail:
-          'You are bright, sharp, and driven. An achiever in the truest sense, and it shows.',
+          'You are gifted in ways that keep surprising people. Art comes so naturally to you, and you have been quietly brilliant your whole life. Getting into Oaktree was never luck. It was you.',
         accent: 'midnight',
       },
       {
         id: 'lt-05',
+        label: 'Your immaculate taste',
+        detail:
+          'In music, in fashion, in the smallest details. You always know what feels right, and somehow make it look effortless.',
+        accent: 'berry',
+      },
+      {
+        id: 'lt-06',
         label: 'Your empathy',
         detail:
           'You care about people in a way that feels rare. You notice what others need, and you meet them there.',
         accent: 'gold',
       },
       {
-        id: 'lt-06',
+        id: 'lt-07',
         label: 'Your angelic presence',
         detail:
           'Beautiful and charismatic without trying. You soften a space just by being in it.',
         accent: 'rose',
       },
       {
-        id: 'lt-07',
+        id: 'lt-08',
         label: 'Your sparkly smile',
         detail:
           'You have the prettiest smile. May it never fade. Keep shining, queen.',
         accent: 'burgundy',
       },
       {
-        id: 'lt-08',
+        id: 'lt-09',
         label: 'Your resilience',
         detail:
           'Your tenacity when life gets heavy. You face hard things and still refuse to give up.',
