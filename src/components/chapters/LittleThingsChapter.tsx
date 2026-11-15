@@ -60,12 +60,13 @@ export function LittleThingsChapter() {
       className="relative overflow-hidden py-24 md:py-32"
       style={{ ['--cursor-fg' as string]: 'var(--ink)' }}
     >
-      <div className="leopard-print absolute inset-0" aria-hidden />
+      <div
+        className="absolute inset-0 bg-cover bg-center"
+        style={{ backgroundImage: 'url(/assets/backgrounds/leopard.jpg)' }}
+        aria-hidden
+      />
       <div className="leopard-wash absolute inset-0" aria-hidden />
       <div className="relative mx-auto max-w-6xl px-6">
-        <p className="mb-3 text-center text-[0.65rem] font-bold tracking-[0.32em] uppercase text-[var(--bow)]">
-          Fashion mode on
-        </p>
         <SectionHeading
           eyebrow={littleThings.eyebrow}
           title={littleThings.title}
