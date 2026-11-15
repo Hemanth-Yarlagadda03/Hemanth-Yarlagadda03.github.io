@@ -45,7 +45,7 @@ export default function App() {
   }, [phase])
 
   return (
-    <AudioProvider>
+    <AudioProvider musicReady={phase !== 'opening'}>
       <CustomCursor />
       <MusicToggle />
 

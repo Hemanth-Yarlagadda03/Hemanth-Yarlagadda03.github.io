@@ -21,20 +21,31 @@ interface AudioContextValue {
 const AudioCtx = createContext<AudioContextValue | null>(null)
 
 const TARGET_VOLUME = 0.35
-const DUCKED_VOLUME = 0.06
 
-export function AudioProvider({ children }: { children: ReactNode }) {
+export function AudioProvider({
+  children,
+  musicReady = false,
+}: {
+  children: ReactNode
+  /** Music begins on the Happy Birthday page, not the opening. */
+  musicReady?: boolean
+}) {
   const audioRef = useRef<HTMLAudioElement | null>(null)
   const [enabled, setEnabled] = useState(true)
   const [hasTrack, setHasTrack] = useState(false)
   const enabledRef = useRef(true)
-  const duckedRef = useRef(false)
+  const musicReadyRef = useRef(musicReady)
+  const videoHoldRef = useRef(false)
   const fadeRef = useRef<number | null>(null)
   const startingRef = useRef(false)
 
   useEffect(() => {
     enabledRef.current = enabled
   }, [enabled])
+
+  useEffect(() => {
+    musicReadyRef.current = musicReady
+  }, [musicReady])
 
   useEffect(() => {
     const audio = new Audio()
@@ -80,13 +91,20 @@ export function AudioProvider({ children }: { children: ReactNode }) {
   const startPlayback = useCallback(async () => {
     const audio = audioRef.current
     if (!audio || !hasTrack || startingRef.current) return false
-    if (!audio.paused && audio.src) return true
+    if (!musicReadyRef.current || !enabledRef.current || videoHoldRef.current) {
+      return false
+    }
+    if (!audio.paused && audio.src) {
+      fadeTo(TARGET_VOLUME)
+      return true
+    }
 
     startingRef.current = true
     try {
       if (!audio.src) audio.src = siteContent.audio.src
+      audio.loop = true
       await audio.play()
-      fadeTo(duckedRef.current ? DUCKED_VOLUME : TARGET_VOLUME)
+      fadeTo(TARGET_VOLUME)
       return true
     } catch {
       return false
@@ -95,26 +113,52 @@ export function AudioProvider({ children }: { children: ReactNode }) {
     }
   }, [fadeTo, hasTrack])
 
-  // Prefer autoplay; if the browser blocks it, unlock on the first tap/click/key.
+  const pauseForVideo = useCallback(() => {
+    const audio = audioRef.current
+    if (!audio) return
+    videoHoldRef.current = true
+    fadeTo(0, 350)
+    window.setTimeout(() => {
+      if (videoHoldRef.current) audio.pause()
+    }, 380)
+  }, [fadeTo])
+
+  const resumeAfterVideo = useCallback(() => {
+    videoHoldRef.current = false
+    if (!enabledRef.current || !musicReadyRef.current) return
+    void startPlayback()
+  }, [startPlayback])
+
+  // Start (and keep looping) once we reach Happy Birthday / journey.
   useEffect(() => {
-    if (!hasTrack || !enabled) return
+    if (!hasTrack || !enabled || !musicReady) {
+      const audio = audioRef.current
+      if (audio && !musicReady) {
+        fadeTo(0, 300)
+        window.setTimeout(() => {
+          if (!musicReadyRef.current) audio.pause()
+        }, 320)
+      }
+      return
+    }
+    if (videoHoldRef.current) return
 
     let cancelled = false
     let unlocked = false
 
     const tryStart = async () => {
       const ok = await startPlayback()
-      if (cancelled || ok) {
-        if (ok) unlocked = true
-        return ok
-      }
-      return false
+      if (ok) unlocked = true
+      return ok
     }
 
     void tryStart()
 
     const unlock = () => {
-      if (cancelled || unlocked || !enabledRef.current) return
+      if (cancelled || unlocked || !enabledRef.current || !musicReadyRef.current) {
+        return
+      }
+      if (videoHoldRef.current) return
       void tryStart().then((ok) => {
         if (ok) {
           unlocked = true
@@ -135,7 +179,7 @@ export function AudioProvider({ children }: { children: ReactNode }) {
       window.removeEventListener('keydown', unlock)
       window.removeEventListener('touchstart', unlock)
     }
-  }, [enabled, hasTrack, startPlayback])
+  }, [enabled, fadeTo, hasTrack, musicReady, startPlayback])
 
   const toggle = useCallback(async () => {
     const audio = audioRef.current
@@ -147,8 +191,10 @@ export function AudioProvider({ children }: { children: ReactNode }) {
     if (!enabled) {
       setEnabled(true)
       enabledRef.current = true
-      const ok = await startPlayback()
-      if (!ok) setEnabled(false)
+      if (musicReadyRef.current && !videoHoldRef.current) {
+        const ok = await startPlayback()
+        if (!ok) setEnabled(false)
+      }
     } else {
       fadeTo(0, 400)
       window.setTimeout(() => audio.pause(), 420)
@@ -156,19 +202,15 @@ export function AudioProvider({ children }: { children: ReactNode }) {
     }
   }, [enabled, fadeTo, hasTrack, startPlayback])
 
-  const duck = useCallback(() => {
-    duckedRef.current = true
-    if (enabled) fadeTo(DUCKED_VOLUME, 400)
-  }, [enabled, fadeTo])
-
-  const unduck = useCallback(() => {
-    duckedRef.current = false
-    if (enabled) fadeTo(TARGET_VOLUME, 600)
-  }, [enabled, fadeTo])
-
   const value = useMemo(
-    () => ({ enabled, toggle, duck, unduck, hasTrack }),
-    [enabled, toggle, duck, unduck, hasTrack],
+    () => ({
+      enabled,
+      toggle,
+      duck: pauseForVideo,
+      unduck: resumeAfterVideo,
+      hasTrack,
+    }),
+    [enabled, toggle, pauseForVideo, resumeAfterVideo, hasTrack],
   )
 
   return <AudioCtx.Provider value={value}>{children}</AudioCtx.Provider>

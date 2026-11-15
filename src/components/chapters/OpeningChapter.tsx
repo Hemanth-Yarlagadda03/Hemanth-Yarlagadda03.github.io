@@ -3,7 +3,6 @@ import { AnimatePresence, motion } from 'framer-motion'
 import gsap from 'gsap'
 import { Play, Volume2 } from 'lucide-react'
 import { siteContent } from '../../content/siteContent'
-import { useAudio } from '../audio/AudioProvider'
 import { useMediaPresence } from '../../hooks/useMediaPresence'
 import { useReducedMotion } from '../../hooks/useReducedMotion'
 import { SparkleField } from '../ui/SparkleField'
@@ -16,7 +15,6 @@ export function OpeningChapter({ onComplete }: Props) {
   const { opening } = siteContent
   const videoRef = useRef<HTMLVideoElement>(null)
   const rootRef = useRef<HTMLElement>(null)
-  const { duck, unduck } = useAudio()
   const reduced = useReducedMotion()
   const videoPresent = useMediaPresence(opening.videoSrc)
 
@@ -60,7 +58,6 @@ export function OpeningChapter({ onComplete }: Props) {
     let cancelled = false
     const start = async () => {
       try {
-        duck()
         await video.play()
       } catch {
         if (!cancelled) playFallback()
@@ -70,12 +67,11 @@ export function OpeningChapter({ onComplete }: Props) {
     return () => {
       cancelled = true
     }
-    // playFallback / duck are stable enough for this open-once path
+    // playFallback is stable enough for this open-once path
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [phase])
 
   const finish = () => {
-    unduck()
     const el = rootRef.current
     if (!el || reduced) {
       onComplete()
@@ -93,7 +89,6 @@ export function OpeningChapter({ onComplete }: Props) {
 
   const playFallback = () => {
     setPhase('fallback')
-    duck()
     window.setTimeout(finish, reduced ? 800 : 4200)
   }
 
