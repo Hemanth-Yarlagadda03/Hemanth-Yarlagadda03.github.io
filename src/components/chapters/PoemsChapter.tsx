@@ -64,32 +64,18 @@ export function PoemsChapter() {
               <article
                 key={poem.id}
                 data-poem
-                className={`relative ${index % 2 === 1 ? 'md:ml-auto md:max-w-xl md:text-right' : 'md:max-w-xl'}`}
+                className={`relative ${index % 2 === 1 ? 'md:ml-auto md:max-w-2xl md:text-right' : 'md:max-w-2xl'}`}
               >
-                {poem.dedication ? (
-                  <p
-                    data-line
-                    className="mb-6 text-[0.65rem] tracking-[0.35em] uppercase text-[var(--rose)]"
-                  >
-                    {poem.dedication}
-                  </p>
-                ) : null}
-                <h3
-                  data-line
-                  className={`text-[clamp(2rem,5vw,3.4rem)] leading-tight ${
-                    isTe ? 'font-telugu' : 'font-display'
-                  }`}
-                >
-                  {poem.title}
-                </h3>
                 <div
-                  className={`mt-8 space-y-3 text-[clamp(1.15rem,2.4vw,1.45rem)] leading-[1.85] text-[var(--ivory)]/90 ${
-                    isTe ? 'font-telugu' : 'font-display'
+                  className={`space-y-3 text-[clamp(1.25rem,2.8vw,1.7rem)] text-[var(--ivory)]/92 ${
+                    isTe
+                      ? 'font-telugu leading-[2.05]'
+                      : 'font-calligraphy leading-[1.95]'
                   }`}
                 >
                   {poem.lines.map((line, i) =>
                     line === '' ? (
-                      <div key={`${poem.id}-break-${i}`} data-line className="h-5" />
+                      <div key={`${poem.id}-break-${i}`} data-line className="h-6" />
                     ) : (
                       <p key={`${poem.id}-${i}`} data-line>
                         {line}

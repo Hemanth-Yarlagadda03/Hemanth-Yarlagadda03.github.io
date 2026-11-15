@@ -1,9 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Noto+Sans+Telugu:wght@400;500;600;700&family=Pacifico&family=Quicksand:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Fredoka:wght@400;500;600;700&family=Noto+Serif+Telugu:wght@400;500;600;700&family=Pacifico&family=Quicksand:wght@400;500;600;700&display=swap');
 @import 'tailwindcss';
 
 @theme {
   --font-display: 'Fredoka', 'Nunito', ui-rounded, sans-serif;
   --font-script: 'Pacifico', cursive;
+  --font-calligraphy: 'Great Vibes', 'Pacifico', cursive;
   --font-sans: 'Quicksand', 'Nunito', ui-sans-serif, system-ui, sans-serif;
 }
 
@@ -65,10 +66,16 @@ body {
   font-weight: 400;
 }
 
+.font-calligraphy {
+  font-family: var(--font-calligraphy);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+}
+
 .font-telugu {
-  font-family: 'Noto Sans Telugu', 'Noto Sans', sans-serif;
+  font-family: 'Noto Serif Telugu', 'Noto Sans Telugu', serif;
   font-weight: 500;
-  line-height: 1.9;
+  line-height: 2;
 }
 
 .has-custom-cursor,
@@ -172,6 +179,54 @@ body {
 
 .bow-dot::after {
   right: -0.15rem;
+}
+
+.balloon-field {
+  opacity: 1;
+}
+
+.balloon {
+  position: absolute;
+  bottom: -12%;
+  border-radius: 50% 50% 45% 45%;
+  box-shadow: inset -6px -10px 16px rgba(0, 0, 0, 0.12);
+  animation-name: balloon-drift;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  transform-origin: center bottom;
+}
+
+.balloon::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  width: 1.5px;
+  height: 42px;
+  background: rgba(90, 41, 64, 0.35);
+  transform: translateX(-50%);
+}
+
+.balloon::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -4px;
+  width: 8px;
+  height: 8px;
+  background: inherit;
+  clip-path: polygon(50% 100%, 0 0, 100% 0);
+  transform: translateX(-50%);
+}
+
+@keyframes balloon-drift {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(var(--sway, 16px));
+  }
 }
 
 .magnetic-btn:focus-visible {

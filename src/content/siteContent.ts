@@ -1,6 +1,6 @@
 /**
  * CENTRAL CONTENT CONFIGURATION
- * Replace media paths with real assets. Poems are kept exactly as written.
+ * Poems are kept exactly as written.
  * See ASSET_GUIDE.md for where each file belongs.
  */
 
@@ -13,8 +13,8 @@ export interface LittleThing {
 
 export interface Poem {
   id: string
-  title: string
-  /** Lines of the poem. Use empty string for stanza breaks. */
+  /** Optional. Leave empty for untitled poems. */
+  title?: string
   lines: string[]
   dedication?: string
   lang?: 'en' | 'te'
@@ -49,7 +49,7 @@ export const siteContent = {
     eyebrow: 'Chapter 03',
     title: 'Pushkara Highlights',
     subtitle:
-      'Moments that feel like you — tap any clip to play. Drop your videos into /assets/videos/.',
+      'Moments that feel like you. Tap any clip to play. Drop your videos into /assets/videos/.',
     items: [
       {
         id: 'hl-01',
@@ -85,62 +85,62 @@ export const siteContent = {
   littleThings: {
     eyebrow: 'Chapter 04',
     title: 'Little Things About You',
-    subtitle: 'Tap each one — the truths that make Pushkara, Pushkara.',
+    subtitle: 'Tap one. Tiny truths I notice about you.',
     items: [
       {
         id: 'lt-01',
         label: 'Your boba eyes',
         detail:
-          'Eyes people get lost in — soft, deep, impossible to look away from once they’ve found you.',
+          'Okay but your eyes though. People actually get stuck looking at them. Soft, deep, kind of unfair.',
         accent: 'rose',
       },
       {
         id: 'lt-02',
         label: 'Your humour',
         detail:
-          'You walk into a room and the air changes. Your jokes don’t just land — they light everything up.',
+          'You crack a joke and the whole room loosens up. Like, instantly. You do that without even trying.',
         accent: 'gold',
       },
       {
         id: 'lt-03',
         label: 'Your kindness',
         detail:
-          'You are genuinely sweet — the kind of kindness that feels rare, steady, and real.',
+          'You’re just sweet. Not performance sweet. The real kind that makes people feel taken care of.',
         accent: 'burgundy',
       },
       {
         id: 'lt-04',
         label: 'Your intelligence',
         detail:
-          'Bright, sharp, and always becoming more. An achiever through and through — and it shows.',
+          'You’re sharp and you work hard and it shows. Watching you achieve things is honestly inspiring.',
         accent: 'midnight',
       },
       {
         id: 'lt-05',
         label: 'Your empathy',
         detail:
-          'You feel people deeply. You notice what hurts, what heals, and you meet it with care.',
+          'You actually care how people feel. You check in. You notice the quiet stuff most people miss.',
         accent: 'gold',
       },
       {
         id: 'lt-06',
         label: 'Your angelic presence',
         detail:
-          'Beautiful and charismatic without trying — a presence that softens a space the second you arrive.',
+          'You walk in and the vibe gets prettier somehow. Charisma, softness, all of it. Very you.',
         accent: 'rose',
       },
       {
         id: 'lt-07',
         label: 'Your sparkly smile',
         detail:
-          'The prettiest smile — and may it never fade. Keep shining, queen.',
+          'Prettiest smile. Full stop. Hope it never wears off, queen. The world needs that smile.',
         accent: 'burgundy',
       },
       {
         id: 'lt-08',
         label: 'Your resilience',
         detail:
-          'Your tenacity when life gets heavy. You face the hard things and still refuse to give up.',
+          'When things get messy you still show up. You deal with the hard stuff and you don’t quit. That grit is rare.',
         accent: 'midnight',
       },
     ] satisfies LittleThing[],
@@ -149,12 +149,10 @@ export const siteContent = {
   poems: {
     eyebrow: 'Chapter 05',
     title: 'Words That Deserve to Be Read',
-    subtitle: 'For Pushkara — kept exactly as written.',
+    subtitle: 'Written for Pushkara.',
     entries: [
       {
         id: 'poem-01',
-        title: 'Muse',
-        dedication: 'For Pushkara',
         lang: 'en' as const,
         lines: [
           'Pushkara, you are a muse,',
@@ -167,22 +165,13 @@ export const siteContent = {
       },
       {
         id: 'poem-02',
-        title: 'ఓ పుష్కరా',
-        dedication: '',
         lang: 'te' as const,
         lines: [
           'నదై తిరిగే నీ నడుము లా,',
           'అలై తాకావా ఓ పుష్కరా?',
           'కలై కదిలావా మదిలో,',
           'కలల దేవతవై ఈ వేళలో.',
-        ],
-      },
-      {
-        id: 'poem-03',
-        title: 'అందమైన కవిత',
-        dedication: '',
-        lang: 'te' as const,
-        lines: [
+          '',
           'ప్రకృతి దాచిన అందాలన్నీ నీలోన ఉన్నాయా?',
           'దేవుడు మిగిల్చిన రహస్యాలన్నీ నీ కళ్లలో ఉన్నాయా?',
           'నీ పిలుపు కోయిలమ్మ పలుకా,',
@@ -216,18 +205,18 @@ export const siteContent = {
     eyebrow: 'The Final Surprise',
     headline: 'Happy Birthday,',
     paragraphs: [
-      'I cherish you — fully, without holding back. You are one of the most incredible people I have ever known. Complete in a way that is rare. The smartest, funniest, sweetest, most gorgeous person — and somehow still becoming more.',
+      'I cherish you fully, without holding back. You are one of the most incredible people I have ever known. Complete in a way that is rare. The smartest, funniest, sweetest, most gorgeous person, and somehow still becoming more.',
       'You are going to achieve beautiful things, and I will be so proud to witness them. I already am. Everyone who knows you is. Keep going, queen. You deserve the world, and it is yours for the taking.',
-      'You mean more to me than a short message can carry. It is heartening to watch you win — and you will keep winning. May this year bring you success that feels earned, and happiness that stays.',
-      'My heart is grateful for you. I am so glad you are part of my life. You bring warmth, joy, and meaning into my days — and into everyone else’s, too. Your presence feels familiar and safe. Every smile, every small shared moment, has quietly found a place in my heart.',
-      'No matter what the future holds, I will always be thankful for you — for your presence, and for the place you hold. Love you. You are the best.',
+      'You mean more to me than a short message can carry. It is heartening to watch you win, and you will keep winning. May this year bring you success that feels earned, and happiness that stays.',
+      'My heart is grateful for you. I am so glad you are part of my life. You bring warmth, joy, and meaning into my days and into everyone else’s too. Your presence feels familiar and safe. Every smile, every small shared moment, has quietly found a place in my heart.',
+      'No matter what the future holds, I will always be thankful for you, for your presence, and for the place you hold. Love you. You are the best.',
     ],
     closingLine: 'Happy Birthday, Pushkara.',
     mediaSrc: '/assets/photos/finale.svg',
     mediaType: 'image' as const,
     revealLabel: 'One last thing',
     secretMessage:
-      'Wherever life takes you next — keep shining. The world is brighter with you in it, queen.',
+      'Wherever life takes you next, keep shining. The world is brighter with you in it, queen.',
   },
 
   audio: {
