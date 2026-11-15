@@ -203,7 +203,7 @@ export const siteContent = {
       {
         id: 'yaadein-01',
         title: 'Yaadein',
-        caption: 'Press play when you’re ready',
+        caption: 'My video editing sucks, I’m sorry 😭',
         src: '/assets/videos/yaadein.mp4',
         poster: '/assets/videos/yaadein-poster.jpg',
       },
