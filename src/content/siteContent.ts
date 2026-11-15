@@ -22,7 +22,8 @@ export interface Poem {
 
 export interface VideoMemory {
   id: string
-  title: string
+  /** Optional overlay title on the tile. */
+  title?: string
   caption?: string
   src: string
   poster: string
@@ -52,35 +53,30 @@ export const siteContent = {
     items: [
       {
         id: 'hl-01',
-        title: 'Moment 01',
         caption: 'A little moment kept',
         src: '/assets/videos/highlight-01.mp4',
         poster: '/assets/videos/highlight-01-poster.jpg',
       },
       {
         id: 'hl-02',
-        title: 'Moment 02',
         caption: 'Still smiling in this one',
         src: '/assets/videos/highlight-02.mp4',
         poster: '/assets/videos/highlight-02-poster.jpg',
       },
       {
         id: 'hl-03',
-        title: 'Moment 03',
         caption: 'One of the good days',
         src: '/assets/videos/highlight-03.mp4',
         poster: '/assets/videos/highlight-03-poster.jpg',
       },
       {
         id: 'hl-04',
-        title: 'Moment 04',
         caption: 'Pure Pushkara energy',
         src: '/assets/videos/highlight-04.mp4',
         poster: '/assets/videos/highlight-04-poster.jpg',
       },
       {
         id: 'hl-05',
-        title: 'Moment 05',
         caption: 'This one hits different',
         src: '/assets/videos/highlight-05.mp4',
         poster: '/assets/videos/highlight-05-poster.jpg',

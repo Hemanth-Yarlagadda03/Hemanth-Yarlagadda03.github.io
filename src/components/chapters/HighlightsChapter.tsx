@@ -31,7 +31,7 @@ function HighlightTile({
     >
       <img
         src={item.poster}
-        alt={item.title}
+        alt={item.caption || item.title || 'A Pushkara moment'}
         className="h-full w-full object-cover transition duration-700 group-hover:scale-[1.04]"
         loading="lazy"
       />
@@ -39,12 +39,24 @@ function HighlightTile({
       <span className="absolute top-1/2 left-1/2 flex h-16 w-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-4 border-white bg-[var(--bow)] shadow-[0_12px_28px_rgba(239,62,86,0.4)]">
         <Play className="ml-1 text-white" fill="currentColor" />
       </span>
-      <div className="absolute inset-x-0 bottom-0 p-5 md:p-7">
-        <p className="font-display text-2xl text-white md:text-3xl">{item.title}</p>
-        {item.caption && (
-          <p className="mt-1 text-sm text-white/75">{item.caption}</p>
-        )}
-      </div>
+      {(item.title || item.caption) && (
+        <div className="absolute inset-x-0 bottom-0 p-5 md:p-7">
+          {item.title && (
+            <p className="font-display text-2xl text-white md:text-3xl">{item.title}</p>
+          )}
+          {item.caption && (
+            <p
+              className={
+                item.title
+                  ? 'mt-1 text-sm text-white/75'
+                  : 'font-display text-xl text-white md:text-2xl'
+              }
+            >
+              {item.caption}
+            </p>
+          )}
+        </div>
+      )}
     </button>
   )
 }
@@ -122,7 +134,7 @@ export function HighlightsChapter() {
           className="fixed inset-0 z-[70] flex items-center justify-center bg-[var(--midnight)]/90 p-4"
           role="dialog"
           aria-modal="true"
-          aria-label={active.title}
+          aria-label={active.caption || active.title || 'Moment video'}
         >
           <button
             type="button"
@@ -133,27 +145,15 @@ export function HighlightsChapter() {
             <X />
           </button>
           <div className="w-full max-w-5xl overflow-hidden rounded-[1.25rem] bg-black">
-            {present ? (
-              <video
-                key={active.src}
-                src={active.src}
-                poster={active.poster}
-                controls
-                autoPlay
-                playsInline
-                className="aspect-video w-full"
-              />
-            ) : (
+            {present === false ? (
               <div className="relative flex aspect-video flex-col items-center justify-center gap-4 px-8 text-center text-white">
                 <img
                   src={active.poster}
                   alt=""
                   className="absolute inset-0 -z-10 h-full w-full object-cover opacity-35"
                 />
-                <p className="font-display text-3xl">{active.title}</p>
                 <p className="max-w-md text-sm text-white/70">
-                  Add your video at{' '}
-                  <code className="text-[var(--rose)]">{active.src}</code>
+                  This clip isn’t available right now.
                 </p>
                 <button
                   type="button"
@@ -163,6 +163,16 @@ export function HighlightsChapter() {
                   Close
                 </button>
               </div>
+            ) : (
+              <video
+                key={active.src}
+                src={active.src}
+                poster={active.poster}
+                controls
+                autoPlay
+                playsInline
+                className="aspect-video w-full"
+              />
             )}
           </div>
         </div>

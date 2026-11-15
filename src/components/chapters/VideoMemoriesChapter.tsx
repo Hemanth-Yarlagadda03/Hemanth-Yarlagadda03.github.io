@@ -27,7 +27,7 @@ function MemoryTile({
     >
       <img
         src={item.poster}
-        alt={item.title}
+        alt={item.caption || item.title || 'Yaadein'}
         className="h-full w-full object-cover transition duration-700 group-hover:scale-[1.04]"
         loading="lazy"
       />
@@ -35,12 +35,24 @@ function MemoryTile({
       <span className="absolute top-1/2 left-1/2 flex h-16 w-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-[var(--ivory)]/50 bg-[var(--ivory)]/10 backdrop-blur-sm">
         <Play className="ml-1 text-[var(--ivory)]" fill="currentColor" />
       </span>
-      <div className="absolute inset-x-0 bottom-0 p-5">
-        <p className="font-display text-2xl text-[var(--ivory)]">{item.title}</p>
-        {item.caption && (
-          <p className="mt-1 text-sm text-[var(--ivory)]/65">{item.caption}</p>
-        )}
-      </div>
+      {(item.title || item.caption) && (
+        <div className="absolute inset-x-0 bottom-0 p-5">
+          {item.title && (
+            <p className="font-display text-2xl text-[var(--ivory)]">{item.title}</p>
+          )}
+          {item.caption && (
+            <p
+              className={
+                item.title
+                  ? 'mt-1 text-sm text-[var(--ivory)]/65'
+                  : 'font-display text-xl text-[var(--ivory)]'
+              }
+            >
+              {item.caption}
+            </p>
+          )}
+        </div>
+      )}
     </button>
   )
 }
@@ -120,7 +132,7 @@ export function VideoMemoriesChapter() {
           className="fixed inset-0 z-[70] flex items-center justify-center bg-black/92 p-4"
           role="dialog"
           aria-modal="true"
-          aria-label={active.title}
+          aria-label={active.caption || active.title || 'Yaadein'}
         >
           <button
             type="button"
@@ -131,27 +143,15 @@ export function VideoMemoriesChapter() {
             <X />
           </button>
           <div className="w-full max-w-5xl">
-            {present ? (
-              <video
-                key={active.src}
-                src={active.src}
-                poster={active.poster}
-                controls
-                autoPlay
-                playsInline
-                className="max-h-[85vh] w-full bg-black object-contain"
-              />
-            ) : (
+            {present === false ? (
               <div className="relative flex aspect-video flex-col items-center justify-center gap-4 border border-[var(--ivory)]/15 bg-[var(--ink)] px-8 text-center">
                 <img
                   src={active.poster}
                   alt=""
                   className="absolute inset-0 -z-10 h-full w-full object-cover opacity-30"
                 />
-                <p className="font-display text-3xl">{active.title}</p>
                 <p className="max-w-md text-sm text-[var(--ivory)]/60">
-                  Replace with your MP4 at{' '}
-                  <code className="text-[var(--gold)]">{active.src}</code>
+                  This clip isn’t available right now.
                 </p>
                 <button
                   type="button"
@@ -161,6 +161,16 @@ export function VideoMemoriesChapter() {
                   Return to the story
                 </button>
               </div>
+            ) : (
+              <video
+                key={active.src}
+                src={active.src}
+                poster={active.poster}
+                controls
+                autoPlay
+                playsInline
+                className="max-h-[85vh] w-full bg-black object-contain"
+              />
             )}
           </div>
         </div>
