@@ -147,8 +147,8 @@ export const siteContent = {
 
   poems: {
     eyebrow: 'Chapter 05',
-    title: 'Pushkara Ke Liye Farishte',
-    subtitle: 'Nazmein, dil se.',
+    title: 'The Poetry That Is Her Existence',
+    subtitle: 'Lines that feel like her.',
     entries: [
       {
         id: 'poem-01',
@@ -187,12 +187,12 @@ export const siteContent = {
 
   videos: {
     eyebrow: 'Chapter 06',
-    title: 'Yeh Wali Yaad',
-    subtitle: 'Bas yeh ek clip. Play karna.',
+    title: 'Yaadein',
+    subtitle: 'Ek clip, poori feeling.',
     items: [
       {
         id: 'vid-01',
-        title: 'Yeh moment',
+        title: 'Yeh yaad',
         caption: 'Jab dil chahe, wapas dekh lena',
         src: '/assets/videos/memory-01.mp4',
         poster: '/assets/videos/memory-01-poster.jpg',
