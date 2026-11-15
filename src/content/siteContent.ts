@@ -147,8 +147,8 @@ export const siteContent = {
 
   poems: {
     eyebrow: 'Chapter 05',
-    title: 'Words That Deserve to Be Read',
-    subtitle: 'Written for Pushkara.',
+    title: 'Poems for Pushkara',
+    subtitle: 'A quiet page, written just for you.',
     entries: [
       {
         id: 'poem-01',
@@ -187,13 +187,13 @@ export const siteContent = {
 
   videos: {
     eyebrow: 'Chapter 06',
-    title: 'Video Memory',
-    subtitle: 'One clip that holds a whole feeling.',
+    title: 'This One Stays',
+    subtitle: 'A single clip that still feels like home. Press play.',
     items: [
       {
         id: 'vid-01',
-        title: 'A moment kept',
-        caption: 'Pressed play when you need the feeling again',
+        title: 'Kept close',
+        caption: 'For whenever you need this feeling again',
         src: '/assets/videos/memory-01.mp4',
         poster: '/assets/videos/memory-01-poster.jpg',
       },
