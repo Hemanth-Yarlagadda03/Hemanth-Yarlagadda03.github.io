@@ -83,6 +83,16 @@ export function PoemsChapter() {
                     ),
                   )}
                 </div>
+                {poem.author && (
+                  <p
+                    data-line
+                    className={`mt-8 text-[0.78rem] font-bold tracking-[0.22em] uppercase text-[var(--rose)] ${
+                      index % 2 === 1 ? 'md:text-right' : ''
+                    }`}
+                  >
+                    — {poem.author}
+                  </p>
+                )}
                 <div
                   aria-hidden
                   className={`mt-10 h-px w-24 bg-[var(--rose)]/50 ${index % 2 === 1 ? 'md:ml-auto' : ''}`}

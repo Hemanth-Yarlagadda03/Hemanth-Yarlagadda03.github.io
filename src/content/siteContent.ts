@@ -17,6 +17,7 @@ export interface Poem {
   title?: string
   lines: string[]
   dedication?: string
+  author?: string
   lang?: 'en' | 'te'
 }
 
@@ -158,11 +159,12 @@ export const siteContent = {
   poems: {
     eyebrow: 'Chapter 05',
     title: 'The Poetry That Is Her Existence',
-    subtitle: 'Lines that feel like her.',
+    subtitle: '',
     entries: [
       {
         id: 'poem-01',
         lang: 'en' as const,
+        author: 'Bok',
         lines: [
           'Pushkara, you are a muse,',
           "A wonderful dream I wouldn't refuse.",
@@ -175,6 +177,7 @@ export const siteContent = {
       {
         id: 'poem-02',
         lang: 'te' as const,
+        author: 'Bok',
         lines: [
           'నదై తిరిగే నీ నడుము లా,',
           'అలై తాకావా ఓ పుష్కరా?',
