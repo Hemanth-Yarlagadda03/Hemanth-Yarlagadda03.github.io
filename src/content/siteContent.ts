@@ -210,7 +210,7 @@ export const siteContent = {
       'No matter what the future holds, I will always be thankful for you, for your presence, and for the place you hold. Love you. You are the best.',
     ],
     closingLine: 'Happy Birthday, Pushkara.',
-    mediaSrc: '/assets/photos/finale.svg',
+    mediaSrc: '/assets/photos/finale.jpg',
     mediaType: 'image' as const,
     revealLabel: 'One last thing',
     secretMessage:

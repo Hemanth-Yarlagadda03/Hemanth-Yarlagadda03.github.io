@@ -104,7 +104,7 @@ export function FinaleChapter() {
           <img
             src={finale.mediaSrc}
             alt="Final birthday memory"
-            className="relative aspect-[4/5] w-full rounded-[1.5rem] object-cover shadow-[0_24px_60px_rgba(255,79,135,0.25)]"
+            className="relative aspect-[4/5] w-full rounded-[1.5rem] object-cover object-[center_20%] shadow-[0_24px_60px_rgba(255,79,135,0.25)]"
           />
         </div>
       </div>
