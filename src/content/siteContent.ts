@@ -214,8 +214,8 @@ export const siteContent = {
     eyebrow: 'The Final Surprise',
     headline: 'Happy Birthday,',
     paragraphs: [
-      'I cherish you fully, without holding back. You are one of the most incredible people I have ever known. Complete in a way that is rare. The smartest, funniest, sweetest, most gorgeous person, and somehow still becoming more.',
-      'You are going to achieve beautiful things, and I will be so proud to witness them. I already am. Everyone who knows you is. Keep going, queen. You deserve the world, and it is yours for the taking.',
+      'I cherish you fully, without holding back. You are the most incredible people I have ever known. Complete in a way that is rare. The smartest, funniest, sweetest, most gorgeous person, and somehow still becoming more.',
+      'You are going to achieve more beautiful things, and I will be so proud to witness them. I already am. Everyone who knows you is. Keep going, queen. You deserve the world, and it is yours for the taking.',
       'You mean more to me than a short message can carry. It is heartening to watch you win, and you will keep winning. May this year bring you success that feels earned, and happiness that stays.',
       'My heart is grateful for you. I am so glad you are part of my life. You bring warmth, joy, and meaning into my days and into everyone else’s too. Your presence feels familiar and safe. Every smile, every small shared moment, has quietly found a place in my heart. I would give all my riches for your smiles, and all my blood for the sweetness of your laughter, princess.',
       'No matter what the future holds, I will always be thankful for you, for your presence, and for the place you hold. Love you. You are the best.',
