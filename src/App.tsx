@@ -5,10 +5,9 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { AudioProvider } from './components/audio/AudioProvider'
 import { OpeningChapter } from './components/chapters/OpeningChapter'
 import { RevealChapter } from './components/chapters/RevealChapter'
-import { StoryChapter } from './components/chapters/StoryChapter'
+import { HighlightsChapter } from './components/chapters/HighlightsChapter'
 import { LittleThingsChapter } from './components/chapters/LittleThingsChapter'
 import { PoemsChapter } from './components/chapters/PoemsChapter'
-import { FriendsChapter } from './components/chapters/FriendsChapter'
 import { VideoMemoriesChapter } from './components/chapters/VideoMemoriesChapter'
 import { FinaleChapter } from './components/chapters/FinaleChapter'
 import { CustomCursor } from './components/layout/CustomCursor'
@@ -84,14 +83,13 @@ export default function App() {
             style={{ ['--cursor-fg' as string]: 'var(--ink)' }}
           >
             <ChapterProgress />
-            <StoryChapter />
+            <HighlightsChapter />
             <LittleThingsChapter />
             <PoemsChapter />
-            <FriendsChapter />
             <VideoMemoriesChapter />
             <FinaleChapter />
             <footer className="border-t border-[var(--bow)]/20 bg-white/50 px-6 py-10 text-center text-[0.75rem] font-bold tracking-[0.18em] uppercase text-[var(--ink-muted)]">
-              Happy birthday · {siteContent.recipientName} · stay sparkly
+              Happy birthday · {siteContent.recipientName}
             </footer>
           </motion.main>
         )}

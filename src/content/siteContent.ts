@@ -1,19 +1,8 @@
 /**
  * CENTRAL CONTENT CONFIGURATION
- * Replace placeholder paths and copy with your real assets and messages.
+ * Replace media paths with real assets. Poems are kept exactly as written.
  * See ASSET_GUIDE.md for where each file belongs.
  */
-
-export type PhotoOrientation = 'portrait' | 'landscape' | 'square'
-
-export interface PhotoMemory {
-  id: string
-  src: string
-  alt: string
-  caption: string
-  orientation: PhotoOrientation
-  year?: string
-}
 
 export interface LittleThing {
   id: string
@@ -28,15 +17,7 @@ export interface Poem {
   /** Lines of the poem. Use empty string for stanza breaks. */
   lines: string[]
   dedication?: string
-}
-
-export interface FriendMessage {
-  id: string
-  name: string
-  relationship?: string
-  message: string
-  photo?: string
-  video?: string
+  lang?: 'en' | 'te'
 }
 
 export interface VideoMemory {
@@ -51,144 +32,115 @@ export const siteContent = {
   recipientName: 'Pushkara',
 
   opening: {
-    introLine: 'Pushkara, a sparkly surprise is waiting…',
-    /** Replace with /assets/opening/celebrity-wish.mp4 */
+    introLine: 'Pushkara, a surprise waits for you.',
     videoSrc: '/assets/opening/celebrity-wish.mp4',
-    /** Replace with /assets/opening/poster.jpg */
     posterSrc: '/assets/opening/poster.svg',
-    durationHint: 'Cute message ahead',
+    durationHint: 'Press play when you’re ready',
   },
 
   reveal: {
     headline: 'HAPPY BIRTHDAY',
-    subline: 'Unicorn energy only — made just for you, Pushkara.',
+    subline:
+      'Wishing you a year ahead filled with joy, love, laughter, and memories worth keeping. May every dream you hold find its way to you.',
     cta: "There's more to this…",
   },
 
-  story: {
+  highlights: {
     eyebrow: 'Chapter 03',
-    title: 'The Story of You',
+    title: 'Pushkara Highlights',
     subtitle:
-      'Snapshots, sparkles, and soft moments — swap these frames for real photos.',
-    photos: [
+      'Moments that feel like you — tap any clip to play. Drop your videos into /assets/videos/.',
+    items: [
       {
-        id: 'photo-01',
-        src: '/assets/photos/photo-01.svg',
-        alt: 'Placeholder memory 01',
-        caption: 'A morning that still glows',
-        orientation: 'portrait' as const,
-        year: '2019',
+        id: 'hl-01',
+        title: 'Highlight 01',
+        caption: 'Add highlight-01.mp4',
+        src: '/assets/videos/highlight-01.mp4',
+        poster: '/assets/videos/memory-01-poster.svg',
       },
       {
-        id: 'photo-02',
-        src: '/assets/photos/photo-02.svg',
-        alt: 'Placeholder memory 02',
-        caption: 'Laughter, mid-sentence',
-        orientation: 'landscape' as const,
-        year: '2020',
+        id: 'hl-02',
+        title: 'Highlight 02',
+        caption: 'Add highlight-02.mp4',
+        src: '/assets/videos/highlight-02.mp4',
+        poster: '/assets/videos/memory-02-poster.svg',
       },
       {
-        id: 'photo-03',
-        src: '/assets/photos/photo-03.svg',
-        alt: 'Placeholder memory 03',
-        caption: 'Soft light, quieter hour',
-        orientation: 'portrait' as const,
-        year: '2021',
+        id: 'hl-03',
+        title: 'Highlight 03',
+        caption: 'Add highlight-03.mp4',
+        src: '/assets/videos/highlight-03.mp4',
+        poster: '/assets/videos/memory-03-poster.svg',
       },
       {
-        id: 'photo-04',
-        src: '/assets/photos/photo-04.svg',
-        alt: 'Placeholder memory 04',
-        caption: 'The trip we still quote',
-        orientation: 'landscape' as const,
-        year: '2022',
+        id: 'hl-04',
+        title: 'Highlight 04',
+        caption: 'Add highlight-04.mp4',
+        src: '/assets/videos/highlight-04.mp4',
+        poster: '/assets/videos/memory-01-poster.svg',
       },
-      {
-        id: 'photo-05',
-        src: '/assets/photos/photo-05.svg',
-        alt: 'Placeholder memory 05',
-        caption: 'An ordinary Tuesday, made special',
-        orientation: 'square' as const,
-        year: '2023',
-      },
-      {
-        id: 'photo-06',
-        src: '/assets/photos/photo-06.svg',
-        alt: 'Placeholder memory 06',
-        caption: 'Eyes that hold the room',
-        orientation: 'portrait' as const,
-        year: '2024',
-      },
-      {
-        id: 'photo-07',
-        src: '/assets/photos/photo-07.svg',
-        alt: 'Placeholder memory 07',
-        caption: 'Golden hour, unfinished story',
-        orientation: 'landscape' as const,
-        year: '2025',
-      },
-      {
-        id: 'photo-08',
-        src: '/assets/photos/photo-08.svg',
-        alt: 'Placeholder memory 08',
-        caption: 'Home, in a single glance',
-        orientation: 'portrait' as const,
-        year: 'Now',
-      },
-    ] satisfies PhotoMemory[],
+    ] satisfies VideoMemory[],
   },
 
   littleThings: {
     eyebrow: 'Chapter 04',
-    title: 'Little Things That Make You, You',
-    subtitle: 'Tap a phrase — tiny Pushkara truths, kept playful.',
+    title: 'Little Things About You',
+    subtitle: 'Tap each one — the truths that make Pushkara, Pushkara.',
     items: [
       {
         id: 'lt-01',
-        label: 'That sparkly laugh',
-        detail: 'Placeholder — replace with a joke about how she lights up a room.',
-        accent: 'gold',
-      },
-      {
-        id: 'lt-02',
-        label: 'Playlist energy',
-        detail: 'Placeholder — her go-to songs, late-night vibes, main-character music.',
+        label: 'Your boba eyes',
+        detail:
+          'Eyes people get lost in — soft, deep, impossible to look away from once they’ve found you.',
         accent: 'rose',
       },
       {
+        id: 'lt-02',
+        label: 'Your humour',
+        detail:
+          'You walk into a room and the air changes. Your jokes don’t just land — they light everything up.',
+        accent: 'gold',
+      },
+      {
         id: 'lt-03',
-        label: 'Soft-hearted softie',
-        detail: 'Placeholder — the kind way she shows up for people.',
+        label: 'Your kindness',
+        detail:
+          'You are genuinely sweet — the kind of kindness that feels rare, steady, and real.',
         accent: 'burgundy',
       },
       {
         id: 'lt-04',
-        label: 'Signature phrase',
-        detail: 'Placeholder — something Pushkara always says.',
+        label: 'Your intelligence',
+        detail:
+          'Bright, sharp, and always becoming more. An achiever through and through — and it shows.',
         accent: 'midnight',
       },
       {
         id: 'lt-05',
-        label: 'Main-character aura',
-        detail: 'Placeholder — how she walks into a space and the mood lifts.',
+        label: 'Your empathy',
+        detail:
+          'You feel people deeply. You notice what hurts, what heals, and you meet it with care.',
         accent: 'gold',
       },
       {
         id: 'lt-06',
-        label: 'Guilty pleasure',
-        detail: 'Placeholder — snacks, shows, songs she pretends not to love.',
+        label: 'Your angelic presence',
+        detail:
+          'Beautiful and charismatic without trying — a presence that softens a space the second you arrive.',
         accent: 'rose',
       },
       {
         id: 'lt-07',
-        label: 'Hidden talent',
-        detail: 'Placeholder — something delightful and unexpected about her.',
+        label: 'Your sparkly smile',
+        detail:
+          'The prettiest smile — and may it never fade. Keep shining, queen.',
         accent: 'burgundy',
       },
       {
         id: 'lt-08',
-        label: 'The soft spot',
-        detail: 'Placeholder — animals, aesthetics, little joys she collects.',
+        label: 'Your resilience',
+        detail:
+          'Your tenacity when life gets heavy. You face the hard things and still refuse to give up.',
         accent: 'midnight',
       },
     ] satisfies LittleThing[],
@@ -197,156 +149,95 @@ export const siteContent = {
   poems: {
     eyebrow: 'Chapter 05',
     title: 'Words That Deserve to Be Read',
-    subtitle: 'A pretty page for poems and notes — replace with your own.',
+    subtitle: 'For Pushkara — kept exactly as written.',
     entries: [
       {
         id: 'poem-01',
-        title: 'Placeholder Poem I',
-        dedication: 'For Pushkara — replace with your dedication',
+        title: 'Muse',
+        dedication: 'For Pushkara',
+        lang: 'en' as const,
         lines: [
-          'This line is waiting for your words.',
-          'Another line rests here, patient and unfinished.',
-          '',
-          'Stanzas will bloom when you place the real poem here.',
-          'Until then, this space holds intention.',
+          'Pushkara, you are a muse,',
+          "A wonderful dream I wouldn't refuse.",
+          'If the moon had a favourite view,',
+          'I suspect it would look like you.',
+          'And if beauty ever needed a name,',
+          'It would borrow yours all the same.',
         ],
       },
       {
         id: 'poem-02',
-        title: 'Placeholder Poem II',
-        dedication: 'A second piece — replace entirely',
+        title: 'ఓ పుష్కరా',
+        dedication: '',
+        lang: 'te' as const,
         lines: [
-          'Paper remembers what we almost said.',
-          'Ink keeps the shape of feeling.',
-          '',
-          'Replace every line with something only Pushkara would recognise.',
+          'నదై తిరిగే నీ నడుము లా,',
+          'అలై తాకావా ఓ పుష్కరా?',
+          'కలై కదిలావా మదిలో,',
+          'కలల దేవతవై ఈ వేళలో.',
         ],
       },
       {
         id: 'poem-03',
-        title: 'A Letter, Unfolding',
-        dedication: 'Optional short letter form',
+        title: 'అందమైన కవిత',
+        dedication: '',
+        lang: 'te' as const,
         lines: [
-          'Dear Pushkara,',
+          'ప్రకృతి దాచిన అందాలన్నీ నీలోన ఉన్నాయా?',
+          'దేవుడు మిగిల్చిన రహస్యాలన్నీ నీ కళ్లలో ఉన్నాయా?',
+          'నీ పిలుపు కోయిలమ్మ పలుకా,',
+          'నీ నవ్వు వెన్నెల చిలిపి వెలుగా?',
           '',
-          'This is a placeholder letter. Write freely.',
-          'Say the things that do not fit in a card.',
-          '',
-          'With warmth,',
-          '—',
+          'నీ చూపు తాకితే మౌనమే పాటవుతుందే,',
+          'నీ ఊహ తలిస్తే రేయే పొద్దవుతుందే.',
+          'ఓ పుష్కరా, నువ్వు మాయవా, మహిమవా?',
+          'నా కలానికి అందని అందమైన కవితవా?',
         ],
       },
     ] satisfies Poem[],
   },
 
-  friends: {
-    eyebrow: 'Chapter 06',
-    title: 'Words From Your People',
-    subtitle: 'Messages gathered from the people who know you best.',
-    messages: [
-      {
-        id: 'friend-01',
-        name: 'Friend One',
-        relationship: 'Childhood',
-        message:
-          'Placeholder wish — replace with a real note from a childhood friend.',
-        photo: '/assets/friends/friend-01.svg',
-      },
-      {
-        id: 'friend-02',
-        name: 'Friend Two',
-        relationship: 'College',
-        message:
-          'Placeholder wish — replace with a college memory and birthday love.',
-        photo: '/assets/friends/friend-02.svg',
-      },
-      {
-        id: 'friend-03',
-        name: 'Friend Three',
-        relationship: 'Work',
-        message:
-          'Placeholder wish — replace with something warm from a colleague.',
-        photo: '/assets/friends/friend-03.svg',
-        video: '/assets/friends/friend-03-video.mp4',
-      },
-      {
-        id: 'friend-04',
-        name: 'Friend Four',
-        relationship: 'Family',
-        message: 'Placeholder wish — replace with a family message.',
-        photo: '/assets/friends/friend-04.svg',
-      },
-      {
-        id: 'friend-05',
-        name: 'Friend Five',
-        relationship: 'Chosen family',
-        message:
-          'Placeholder wish — replace with a note from someone who feels like home.',
-        photo: '/assets/friends/friend-05.svg',
-      },
-      {
-        id: 'friend-06',
-        name: 'Friend Six',
-        relationship: 'Far away, always near',
-        message:
-          'Placeholder wish — replace with a long-distance birthday note.',
-        photo: '/assets/friends/friend-06.svg',
-      },
-    ] satisfies FriendMessage[],
-  },
-
   videos: {
-    eyebrow: 'Chapter 07',
-    title: 'Video Memories',
-    subtitle: 'Clips that keep a day alive — add your MP4s when ready.',
+    eyebrow: 'Chapter 06',
+    title: 'Video Memory',
+    subtitle: 'One clip that holds a whole feeling. Add your MP4 when ready.',
     items: [
       {
         id: 'vid-01',
-        title: 'Memory Reel 01',
-        caption: 'Replace poster + MP4 in /assets/videos/',
+        title: 'A moment kept',
+        caption: 'Replace with memory-01.mp4',
         src: '/assets/videos/memory-01.mp4',
         poster: '/assets/videos/memory-01-poster.svg',
-      },
-      {
-        id: 'vid-02',
-        title: 'Memory Reel 02',
-        caption: 'A second clip waits here',
-        src: '/assets/videos/memory-02.mp4',
-        poster: '/assets/videos/memory-02-poster.svg',
-      },
-      {
-        id: 'vid-03',
-        title: 'Memory Reel 03',
-        caption: 'Add as many as you like in siteContent.ts',
-        src: '/assets/videos/memory-03.mp4',
-        poster: '/assets/videos/memory-03-poster.svg',
       },
     ] satisfies VideoMemory[],
   },
 
   finale: {
     eyebrow: 'The Final Surprise',
-    headline: 'Keep sparkling,',
-    message:
-      'Placeholder final message. Write the one line you want Pushkara to remember most.',
-    closingLine: 'Happy birthday, Pushkara. Soft, bright, and so loved.',
-    /** Optional final photo or video */
+    headline: 'Happy Birthday,',
+    paragraphs: [
+      'I cherish you — fully, without holding back. You are one of the most incredible people I have ever known. Complete in a way that is rare. The smartest, funniest, sweetest, most gorgeous person — and somehow still becoming more.',
+      'You are going to achieve beautiful things, and I will be so proud to witness them. I already am. Everyone who knows you is. Keep going, queen. You deserve the world, and it is yours for the taking.',
+      'You mean more to me than a short message can carry. It is heartening to watch you win — and you will keep winning. May this year bring you success that feels earned, and happiness that stays.',
+      'My heart is grateful for you. I am so glad you are part of my life. You bring warmth, joy, and meaning into my days — and into everyone else’s, too. Your presence feels familiar and safe. Every smile, every small shared moment, has quietly found a place in my heart.',
+      'No matter what the future holds, I will always be thankful for you — for your presence, and for the place you hold. Love you. You are the best.',
+    ],
+    closingLine: 'Happy Birthday, Pushkara.',
     mediaSrc: '/assets/photos/finale.svg',
     mediaType: 'image' as const,
-    revealLabel: 'One last sparkle',
+    revealLabel: 'One last thing',
     secretMessage:
-      'Placeholder secret — a private birthday line revealed only at the end.',
+      'Wherever life takes you next — keep shining. The world is brighter with you in it, queen.',
   },
 
   audio: {
-    /** Place an MP3 at this path. Music never autoplays with sound. */
     src: '/assets/music/ambient.mp3',
     label: 'Music',
   },
 
   meta: {
     pageTitle: 'Happy Birthday, Pushkara',
-    description: 'A sparkly birthday experience made for Pushkara.',
+    description: 'A birthday experience made for Pushkara.',
   },
 } as const
 

@@ -1,12 +1,11 @@
 import { useEffect, useState } from 'react'
 
 const chapters = [
-  { id: 'story', label: '03' },
+  { id: 'highlights', label: '03' },
   { id: 'little-things', label: '04' },
   { id: 'poems', label: '05' },
-  { id: 'friends', label: '06' },
-  { id: 'videos', label: '07' },
-  { id: 'finale', label: '08' },
+  { id: 'videos', label: '06' },
+  { id: 'finale', label: '07' },
 ]
 
 export function ChapterProgress() {

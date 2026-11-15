@@ -29,7 +29,7 @@ export function FinaleChapter() {
       tl.fromTo(
         '[data-finale]',
         { y: 40, opacity: 0 },
-        { y: 0, opacity: 1, duration: 1.15, stagger: 0.14, ease: 'power3.out' },
+        { y: 0, opacity: 1, duration: 1.15, stagger: 0.1, ease: 'power3.out' },
       ).fromTo(
         '[data-finale-media]',
         { scale: 1.08, opacity: 0 },
@@ -64,20 +64,21 @@ export function FinaleChapter() {
           </p>
           <h2
             data-finale
-            className="mt-5 font-display text-[clamp(2.6rem,7vw,5rem)] leading-[0.95] text-[var(--ink)]"
+            className="mt-5 font-display text-[clamp(2.4rem,6vw,4.4rem)] leading-[0.95] text-[var(--ink)]"
           >
             {finale.headline}
             <span className="font-script mt-3 block text-[clamp(2.4rem,6vw,4.2rem)] text-[var(--bow)]">
               {recipientName}
             </span>
           </h2>
-          <p
-            data-finale
-            className="mt-8 max-w-md text-lg leading-relaxed font-medium text-[var(--ink-muted)]"
-          >
-            {finale.message}
-          </p>
-          <p data-finale className="mt-6 font-display text-2xl text-[var(--ink)]">
+
+          <div data-finale className="mt-8 max-w-xl space-y-4 text-[1.02rem] leading-relaxed font-medium text-[var(--ink-muted)]">
+            {finale.paragraphs.map((p) => (
+              <p key={p.slice(0, 24)}>{p}</p>
+            ))}
+          </div>
+
+          <p data-finale className="mt-8 font-display text-2xl text-[var(--ink)]">
             {finale.closingLine}
           </p>
 
@@ -89,7 +90,7 @@ export function FinaleChapter() {
 
           <div
             className={`mt-8 overflow-hidden transition-all duration-700 ${
-              revealed ? 'max-h-40 opacity-100' : 'max-h-0 opacity-0'
+              revealed ? 'max-h-48 opacity-100' : 'max-h-0 opacity-0'
             }`}
           >
             <p className="border-l-4 border-[var(--bow)] pl-5 font-script text-2xl text-[var(--ink)]">

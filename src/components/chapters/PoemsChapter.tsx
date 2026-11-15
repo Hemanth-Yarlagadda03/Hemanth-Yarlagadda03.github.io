@@ -58,41 +58,52 @@ export function PoemsChapter() {
         />
 
         <div className="space-y-28 md:space-y-40">
-          {poems.entries.map((poem, index) => (
-            <article
-              key={poem.id}
-              data-poem
-              className={`relative ${index % 2 === 1 ? 'md:ml-auto md:max-w-xl md:text-right' : 'md:max-w-xl'}`}
-            >
-              <p
-                data-line
-                className="mb-6 text-[0.65rem] tracking-[0.35em] uppercase text-[var(--rose)]"
+          {poems.entries.map((poem, index) => {
+            const isTe = poem.lang === 'te'
+            return (
+              <article
+                key={poem.id}
+                data-poem
+                className={`relative ${index % 2 === 1 ? 'md:ml-auto md:max-w-xl md:text-right' : 'md:max-w-xl'}`}
               >
-                {poem.dedication}
-              </p>
-              <h3
-                data-line
-                className="font-display text-[clamp(2rem,5vw,3.4rem)] leading-tight"
-              >
-                {poem.title}
-              </h3>
-              <div className="mt-8 space-y-3 font-display text-[clamp(1.15rem,2.4vw,1.45rem)] leading-[1.85] text-[var(--ivory)]/85">
-                {poem.lines.map((line, i) =>
-                  line === '' ? (
-                    <div key={`${poem.id}-break-${i}`} data-line className="h-5" />
-                  ) : (
-                    <p key={`${poem.id}-${i}`} data-line>
-                      {line}
-                    </p>
-                  ),
-                )}
-              </div>
-              <div
-                aria-hidden
-                className={`mt-10 h-px w-24 bg-[var(--rose)]/50 ${index % 2 === 1 ? 'md:ml-auto' : ''}`}
-              />
-            </article>
-          ))}
+                {poem.dedication ? (
+                  <p
+                    data-line
+                    className="mb-6 text-[0.65rem] tracking-[0.35em] uppercase text-[var(--rose)]"
+                  >
+                    {poem.dedication}
+                  </p>
+                ) : null}
+                <h3
+                  data-line
+                  className={`text-[clamp(2rem,5vw,3.4rem)] leading-tight ${
+                    isTe ? 'font-telugu' : 'font-display'
+                  }`}
+                >
+                  {poem.title}
+                </h3>
+                <div
+                  className={`mt-8 space-y-3 text-[clamp(1.15rem,2.4vw,1.45rem)] leading-[1.85] text-[var(--ivory)]/90 ${
+                    isTe ? 'font-telugu' : 'font-display'
+                  }`}
+                >
+                  {poem.lines.map((line, i) =>
+                    line === '' ? (
+                      <div key={`${poem.id}-break-${i}`} data-line className="h-5" />
+                    ) : (
+                      <p key={`${poem.id}-${i}`} data-line>
+                        {line}
+                      </p>
+                    ),
+                  )}
+                </div>
+                <div
+                  aria-hidden
+                  className={`mt-10 h-px w-24 bg-[var(--rose)]/50 ${index % 2 === 1 ? 'md:ml-auto' : ''}`}
+                />
+              </article>
+            )
+          })}
         </div>
       </div>
     </section>

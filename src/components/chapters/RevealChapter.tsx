@@ -168,12 +168,6 @@ export function RevealChapter({ onContinue }: Props) {
       />
 
       <div className="relative z-30 mx-auto max-w-6xl px-6 text-center">
-        <p
-          data-reveal-sub
-          className="mb-4 text-[0.75rem] font-bold tracking-[0.35em] uppercase text-[var(--bow)]"
-        >
-          ♡ sparkle time ♡
-        </p>
         <div className="overflow-hidden">
           <p
             data-reveal-line
@@ -192,7 +186,7 @@ export function RevealChapter({ onContinue }: Props) {
         </div>
         <p
           data-reveal-sub
-          className="mx-auto mt-8 max-w-md text-[1.1rem] font-medium text-[var(--ink-muted)]"
+          className="mx-auto mt-8 max-w-2xl text-[1.12rem] leading-relaxed font-medium text-[var(--ink-muted)]"
         >
           {reveal.subline}
         </p>
