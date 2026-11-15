@@ -99,6 +99,45 @@ body {
   pointer-events: none;
 }
 
+/* Soft fashion leopard — blush wash over classic spots */
+.leopard-print {
+  pointer-events: none;
+  background-color: #f7e4d4;
+  background-image:
+    radial-gradient(ellipse 18px 14px at 20% 30%, #3a2418 0 42%, transparent 46%),
+    radial-gradient(ellipse 10px 8px at 24% 28%, #3a2418 0 40%, transparent 45%),
+    radial-gradient(ellipse 9px 7px at 17% 34%, #3a2418 0 40%, transparent 45%),
+    radial-gradient(ellipse 16px 12px at 55% 22%, #4a2e20 0 42%, transparent 46%),
+    radial-gradient(ellipse 8px 7px at 58% 19%, #4a2e20 0 40%, transparent 45%),
+    radial-gradient(ellipse 8px 6px at 52% 26%, #4a2e20 0 40%, transparent 45%),
+    radial-gradient(ellipse 20px 15px at 78% 48%, #3a2418 0 42%, transparent 46%),
+    radial-gradient(ellipse 9px 8px at 82% 45%, #3a2418 0 40%, transparent 45%),
+    radial-gradient(ellipse 9px 7px at 74% 52%, #3a2418 0 40%, transparent 45%),
+    radial-gradient(ellipse 14px 11px at 35% 68%, #5c3a28 0 42%, transparent 46%),
+    radial-gradient(ellipse 7px 6px at 38% 65%, #5c3a28 0 40%, transparent 45%),
+    radial-gradient(ellipse 7px 6px at 32% 72%, #5c3a28 0 40%, transparent 45%),
+    radial-gradient(ellipse 17px 13px at 62% 78%, #3a2418 0 42%, transparent 46%),
+    radial-gradient(ellipse 8px 7px at 66% 75%, #3a2418 0 40%, transparent 45%),
+    radial-gradient(ellipse 8px 6px at 58% 82%, #3a2418 0 40%, transparent 45%),
+    radial-gradient(ellipse 12px 9px at 12% 82%, #4a2e20 0 42%, transparent 46%),
+    radial-gradient(ellipse 6px 5px at 15% 79%, #4a2e20 0 40%, transparent 45%),
+    radial-gradient(ellipse 15px 12px at 88% 18%, #5c3a28 0 42%, transparent 46%),
+    radial-gradient(ellipse 7px 6px at 91% 15%, #5c3a28 0 40%, transparent 45%);
+  background-size: 180px 160px;
+  opacity: 0.22;
+}
+
+.leopard-wash {
+  pointer-events: none;
+  background:
+    linear-gradient(
+      165deg,
+      rgba(255, 240, 246, 0.92) 0%,
+      rgba(255, 228, 236, 0.88) 45%,
+      rgba(255, 244, 249, 0.94) 100%
+    );
+}
+
 .candy-sky {
   background:
     radial-gradient(ellipse at 20% 15%, rgba(255, 158, 196, 0.55), transparent 42%),

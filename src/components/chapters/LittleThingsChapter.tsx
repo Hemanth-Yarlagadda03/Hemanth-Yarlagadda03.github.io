@@ -57,11 +57,15 @@ export function LittleThingsChapter() {
     <section
       ref={rootRef}
       id="little-things"
-      className="relative overflow-hidden bg-[var(--paper)] py-24 md:py-32"
+      className="relative overflow-hidden py-24 md:py-32"
       style={{ ['--cursor-fg' as string]: 'var(--ink)' }}
     >
-      <div className="paper-texture absolute inset-0 opacity-50" />
+      <div className="leopard-print absolute inset-0" aria-hidden />
+      <div className="leopard-wash absolute inset-0" aria-hidden />
       <div className="relative mx-auto max-w-6xl px-6">
+        <p className="mb-3 text-center text-[0.65rem] font-bold tracking-[0.32em] uppercase text-[var(--bow)]">
+          Fashion mode on
+        </p>
         <SectionHeading
           eyebrow={littleThings.eyebrow}
           title={littleThings.title}
