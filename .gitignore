@@ -35,3 +35,6 @@ dist-ssr
 *.MOV
 *.mov
 assets/videos/yadein.MOV
+
+# Prefer clean public/assets/music/ambient.mp3 over long source filenames
+assets/music/Sufjan Stevens*.mp3

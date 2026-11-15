@@ -227,7 +227,7 @@ export const siteContent = {
 
   audio: {
     src: '/assets/music/ambient.mp3',
-    label: 'Music',
+    label: 'Mystery of Love',
   },
 
   meta: {
