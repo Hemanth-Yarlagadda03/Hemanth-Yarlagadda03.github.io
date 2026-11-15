@@ -187,13 +187,10 @@ body {
 
 .balloon {
   position: absolute;
-  bottom: -12%;
   border-radius: 50% 50% 45% 45%;
   box-shadow: inset -6px -10px 16px rgba(0, 0, 0, 0.12);
-  animation-name: balloon-drift;
-  animation-timing-function: ease-in-out;
-  animation-iteration-count: infinite;
-  transform-origin: center bottom;
+  /* No CSS transform animation — GSAP owns transforms so balloons can fly cleanly */
+  will-change: transform, opacity;
 }
 
 .balloon::after {
@@ -202,7 +199,7 @@ body {
   left: 50%;
   top: 100%;
   width: 1.5px;
-  height: 42px;
+  height: 48px;
   background: rgba(90, 41, 64, 0.35);
   transform: translateX(-50%);
 }
@@ -219,14 +216,15 @@ body {
   transform: translateX(-50%);
 }
 
-@keyframes balloon-drift {
-  0%,
-  100% {
-    transform: translateX(0);
-  }
-  50% {
-    transform: translateX(var(--sway, 16px));
-  }
+.burst-spark {
+  border-radius: 50%;
+  box-shadow: 0 0 10px currentColor;
+  offset: unset;
+}
+
+.burst-spark:nth-child(3n) {
+  border-radius: 2px;
+  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
 }
 
 .magnetic-btn:focus-visible {

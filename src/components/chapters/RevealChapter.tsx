@@ -4,6 +4,7 @@ import { siteContent } from '../../content/siteContent'
 import { MagneticButton } from '../ui/MagneticButton'
 import { SparkleField } from '../ui/SparkleField'
 import { BalloonField } from '../ui/BalloonField'
+import { SparkleBurst } from '../ui/SparkleBurst'
 import { useReducedMotion } from '../../hooks/useReducedMotion'
 
 interface Props {
@@ -11,13 +12,13 @@ interface Props {
 }
 
 const PASTELS = [
-  'rgba(255, 79, 135, 0.9)',
-  'rgba(154, 240, 216, 0.9)',
+  'rgba(255, 79, 135, 0.95)',
+  'rgba(154, 240, 216, 0.95)',
   'rgba(228, 210, 255, 0.95)',
   'rgba(200, 232, 255, 0.95)',
   'rgba(255, 231, 163, 0.95)',
   'rgba(255, 158, 196, 0.95)',
-  'rgba(239, 62, 86, 0.85)',
+  'rgba(239, 62, 86, 0.9)',
 ]
 
 export function RevealChapter({ onContinue }: Props) {
@@ -35,73 +36,102 @@ export function RevealChapter({ onContinue }: Props) {
         '[data-reveal-line], [data-reveal-sub], [data-reveal-cta], [data-veil], [data-burst]',
         { opacity: 1, y: 0, yPercent: 0, scale: 1 },
       )
-      gsap.set('.balloon-field', { opacity: 0.35 })
+      gsap.set('.balloon', { opacity: 0 })
       return
     }
 
     const ctx = gsap.context(() => {
+      const travel = -(window.innerHeight + 280)
+
       gsap.set('[data-reveal-line], [data-reveal-sub], [data-reveal-cta]', {
         opacity: 0,
       })
-      gsap.set('[data-burst]', { scale: 0.4, opacity: 0 })
+      gsap.set('[data-burst]', { opacity: 0, scale: 0.15 })
+      gsap.set('.burst-spark', { opacity: 0, x: 0, y: 0, scale: 0 })
+      gsap.set('.balloon', { y: 0, opacity: 0, scale: 0.55 })
 
-      const tl = gsap.timeline({ defaults: { ease: 'power3.out' } })
+      const tl = gsap.timeline({ defaults: { ease: 'none' } })
 
-      // Balloons rush upward first
-      tl.fromTo(
-        '.balloon',
-        { y: 120, opacity: 0, scale: 0.6 },
-        {
-          y: () => -window.innerHeight - 160,
-          opacity: 1,
-          scale: 1,
-          duration: 2.8,
-          stagger: { each: 0.04, from: 'random' },
-          ease: 'power1.out',
-        },
-      )
-        // Massive sparkle / confetti burst
-        .fromTo(
+      // 1) Balloons rise from below all the way past the top
+      tl.to('.balloon', {
+        opacity: 1,
+        scale: 1,
+        duration: 0.35,
+        stagger: { each: 0.018, from: 'start' },
+        ease: 'power2.out',
+      })
+        .to(
+          '.balloon',
+          {
+            y: travel,
+            duration: 3.4,
+            stagger: { each: 0.035, from: 'center' },
+            ease: 'power1.inOut',
+          },
+          '-=0.15',
+        )
+        // 2) Only AFTER balloons clear the top: big sparkle burst
+        .to(
           '[data-burst]',
-          { scale: 0.2, opacity: 0 },
-          { scale: 1.15, opacity: 1, duration: 0.9, ease: 'back.out(1.6)' },
-          '-=1.6',
+          {
+            opacity: 1,
+            scale: 1.2,
+            duration: 0.55,
+            ease: 'back.out(2)',
+          },
+          '>-0.05',
         )
-        .to('[data-burst]', { scale: 1, duration: 0.5 }, '-=0.3')
-        // Veil lifts to reveal the birthday page
-        .fromTo(
-          '[data-veil]',
-          { opacity: 1 },
-          { opacity: 0, duration: 1.1 },
-          '-=0.7',
+        .to(
+          '.burst-spark',
+          {
+            opacity: 1,
+            x: (_i, target) => Number((target as HTMLElement).dataset.x || 0),
+            y: (_i, target) => Number((target as HTMLElement).dataset.y || 0),
+            scale: 1,
+            rotation: (_i, target) => Number((target as HTMLElement).dataset.rot || 0),
+            duration: 0.9,
+            stagger: 0.006,
+            ease: 'power3.out',
+          },
+          '-=0.35',
         )
+        .to(
+          '[data-burst]',
+          { scale: 1, duration: 0.4, ease: 'power2.out' },
+          '-=0.35',
+        )
+        // 3) Reveal the birthday page
+        .to('[data-veil]', { opacity: 0, duration: 0.9, ease: 'power2.inOut' }, '-=0.25')
         .fromTo(
           '[data-reveal-line]',
-          { yPercent: 120, opacity: 0, scale: 0.92 },
+          { yPercent: 120, opacity: 0, scale: 0.9 },
           {
             yPercent: 0,
             opacity: 1,
             scale: 1,
-            duration: 1.25,
-            stagger: 0.18,
+            duration: 1.15,
+            stagger: 0.16,
             ease: 'power4.out',
           },
-          '-=0.55',
+          '-=0.45',
         )
         .fromTo(
           '[data-reveal-sub]',
           { opacity: 0, y: 28 },
-          { opacity: 1, y: 0, duration: 1 },
-          '-=0.4',
+          { opacity: 1, y: 0, duration: 0.9, ease: 'power3.out' },
+          '-=0.35',
         )
         .fromTo(
           '[data-reveal-cta]',
-          { opacity: 0, y: 20, scale: 0.9 },
-          { opacity: 1, y: 0, scale: 1, duration: 0.85 },
-          '-=0.35',
+          { opacity: 0, y: 18, scale: 0.92 },
+          { opacity: 1, y: 0, scale: 1, duration: 0.75, ease: 'power3.out' },
+          '-=0.3',
         )
-        // Keep a soft drift of balloons in the background
-        .to('.balloon-field', { opacity: 0.45, duration: 0.8 }, '-=0.5')
+        .to(
+          ['.burst-spark', '.burst-glow'],
+          { opacity: 0.35, duration: 1.2, ease: 'power1.out' },
+          '-=0.6',
+        )
     }, el)
 
     return () => ctx.revert()
@@ -117,15 +147,22 @@ export function RevealChapter({ onContinue }: Props) {
     let raf = 0
     let width = 0
     let height = 0
-    const particles = Array.from({ length: 90 }, (_, i) => ({
-      x: Math.random(),
-      y: Math.random(),
-      r: 1.4 + Math.random() * 4.2,
-      s: 0.25 + Math.random() * 0.7,
-      a: 0.4 + Math.random() * 0.55,
+    let active = false
+    // Delay canvas sparkles until burst moment (~3.8s)
+    const arm = window.setTimeout(() => {
+      active = true
+    }, 3800)
+
+    const particles = Array.from({ length: 120 }, (_, i) => ({
+      x: 0.5 + (Math.random() - 0.5) * 0.08,
+      y: 0.5 + (Math.random() - 0.5) * 0.08,
+      r: 1.2 + Math.random() * 3.8,
+      vx: (Math.random() - 0.5) * 0.012,
+      vy: (Math.random() - 0.5) * 0.012,
+      life: 0,
+      max: 0.7 + Math.random() * 0.9,
       color: PASTELS[i % PASTELS.length],
       spin: Math.random() * Math.PI,
-      vx: (Math.random() - 0.5) * 0.0008,
     }))
 
     const resize = () => {
@@ -159,22 +196,26 @@ export function RevealChapter({ onContinue }: Props) {
 
     const draw = () => {
       ctx.clearRect(0, 0, width, height)
-      for (const p of particles) {
-        p.y -= p.s * 0.0022
-        p.x += p.vx
-        p.spin += 0.03
-        if (p.y < -0.05) {
-          p.y = 1.05
-          p.x = Math.random()
-        }
-        const px = p.x * width
-        const py = p.y * height
-        if (p.r > 2.2) drawStar(px, py, p.r, p.color, p.spin)
-        else {
-          ctx.beginPath()
-          ctx.fillStyle = p.color
-          ctx.arc(px, py, p.r, 0, Math.PI * 2)
-          ctx.fill()
+      if (active) {
+        for (const p of particles) {
+          p.life += 0.016
+          p.x += p.vx
+          p.y += p.vy
+          p.vy -= 0.00008
+          p.spin += 0.04
+          const t = Math.min(1, p.life / p.max)
+          const fade = t < 0.15 ? t / 0.15 : 1 - (t - 0.15) / 0.85
+          if (fade <= 0) {
+            p.x = 0.5 + (Math.random() - 0.5) * 0.05
+            p.y = 0.5 + (Math.random() - 0.5) * 0.05
+            p.vx = (Math.random() - 0.5) * 0.014
+            p.vy = (Math.random() - 0.5) * 0.014
+            p.life = 0
+            continue
+          }
+          const alpha = Math.max(0, Math.min(1, fade))
+          const color = p.color.replace(/[\d.]+\)$/, `${alpha})`)
+          drawStar(p.x * width, p.y * height, p.r * (0.7 + fade), color, p.spin)
         }
       }
       raf = requestAnimationFrame(draw)
@@ -185,6 +226,7 @@ export function RevealChapter({ onContinue }: Props) {
     window.addEventListener('resize', resize)
     return () => {
       cancelAnimationFrame(raf)
+      window.clearTimeout(arm)
       window.removeEventListener('resize', resize)
     }
   }, [reduced])
@@ -204,26 +246,18 @@ export function RevealChapter({ onContinue }: Props) {
         style={{ width: '34vw', height: '14vw', top: '18%', right: '-4%', background: 'rgba(200,232,255,0.55)' }}
       />
 
-      <SparkleField className="z-[15]" />
-      <canvas ref={canvasRef} className="pointer-events-none absolute inset-0 z-[16]" aria-hidden />
+      <SparkleField className="z-[14] opacity-40" />
+      <canvas ref={canvasRef} className="pointer-events-none absolute inset-0 z-[29]" aria-hidden />
 
-      <div
-        data-burst
-        className="pointer-events-none absolute inset-0 z-[18] opacity-0"
-        aria-hidden
-      >
-        <div className="absolute top-1/2 left-1/2 h-[min(90vw,640px)] w-[min(90vw,640px)] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(255,255,255,0.95)_0%,rgba(255,158,196,0.55)_35%,transparent_68%)]" />
-        <SparkleField />
-      </div>
-
-      <BalloonField count={32} />
+      <BalloonField count={64} />
+      <SparkleBurst count={80} />
 
       <div
         data-veil
-        className="pointer-events-none absolute inset-0 z-[22] bg-[var(--paper)]"
+        className="pointer-events-none absolute inset-0 z-[32] bg-[var(--paper)]"
       />
 
-      <div className="relative z-30 mx-auto max-w-6xl px-6 text-center">
+      <div className="relative z-40 mx-auto max-w-6xl px-6 text-center">
         <div className="overflow-hidden">
           <p
             data-reveal-line
