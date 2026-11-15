@@ -64,10 +64,10 @@ export default function App() {
         {phase === 'reveal' && (
           <motion.div
             key="reveal"
-            initial={{ opacity: 0 }}
+            initial={{ opacity: 1 }}
             animate={{ opacity: 1 }}
-            exit={{ opacity: 0, filter: 'blur(10px)', scale: 1.02 }}
-            transition={{ duration: 0.9 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.35 }}
           >
             <RevealChapter onContinue={() => setPhase('journey')} />
           </motion.div>

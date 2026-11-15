@@ -32,7 +32,7 @@ export function SparkleBurst({ count = 80 }: { count?: number }) {
   return (
     <div
       data-burst
-      className="pointer-events-none absolute inset-0 z-[28] flex items-center justify-center opacity-0"
+      className="pointer-events-none absolute inset-0 z-[34] flex items-center justify-center opacity-0"
       aria-hidden
     >
       <div className="burst-glow absolute h-[min(95vw,720px)] w-[min(95vw,720px)] rounded-full bg-[radial-gradient(circle,rgba(255,255,255,0.95)_0%,rgba(255,158,196,0.65)_28%,rgba(255,79,135,0.2)_55%,transparent_72%)]" />

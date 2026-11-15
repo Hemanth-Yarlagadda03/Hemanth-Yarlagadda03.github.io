@@ -25,6 +25,7 @@ export function RevealChapter({ onContinue }: Props) {
   const { recipientName, reveal } = siteContent
   const rootRef = useRef<HTMLElement>(null)
   const canvasRef = useRef<HTMLCanvasElement>(null)
+  const burstArmed = useRef(false)
   const reduced = useReducedMotion()
 
   useEffect(() => {
@@ -32,54 +33,64 @@ export function RevealChapter({ onContinue }: Props) {
     if (!el) return
 
     if (reduced) {
-      gsap.set(
-        '[data-reveal-line], [data-reveal-sub], [data-reveal-cta], [data-veil], [data-burst]',
-        { opacity: 1, y: 0, yPercent: 0, scale: 1 },
-      )
-      gsap.set('.balloon', { opacity: 0 })
+      gsap.set('[data-reveal-line], [data-reveal-sub], [data-reveal-cta], [data-burst]', {
+        opacity: 1,
+        y: 0,
+        yPercent: 0,
+        scale: 1,
+      })
+      gsap.set('.balloon', { opacity: 0.25 })
       return
     }
 
+    // Wait one frame so the candy sky paints before we hide/show layers
+    let tl: gsap.core.Timeline | null = null
     const ctx = gsap.context(() => {
-      const travel = -(window.innerHeight + 280)
+      const travel = -(window.innerHeight + 320)
 
+      gsap.set('[data-copy]', { opacity: 0 })
       gsap.set('[data-reveal-line], [data-reveal-sub], [data-reveal-cta]', {
         opacity: 0,
       })
-      gsap.set('[data-burst]', { opacity: 0, scale: 0.15 })
+      gsap.set('[data-burst]', { opacity: 0, scale: 0.2 })
       gsap.set('.burst-spark', { opacity: 0, x: 0, y: 0, scale: 0 })
-      gsap.set('.balloon', { y: 0, opacity: 0, scale: 0.55 })
+      // Balloons start just under the fold, already slightly visible
+      gsap.set('.balloon', { y: 80, opacity: 0, scale: 0.7 })
 
-      const tl = gsap.timeline({ defaults: { ease: 'none' } })
+      tl = gsap.timeline({ defaults: { ease: 'none' } })
 
-      // 1) Balloons rise from below all the way past the top
-      tl.to('.balloon', {
-        opacity: 1,
-        scale: 1,
-        duration: 0.35,
-        stagger: { each: 0.018, from: 'start' },
-        ease: 'power2.out',
-      })
+      // Brief beat so the sky is visible
+      tl.to({}, { duration: 0.25 })
+        // 1) Balloons appear and fly all the way off the top (VISIBLE)
+        .to('.balloon', {
+          opacity: 1,
+          scale: 1,
+          duration: 0.4,
+          stagger: { each: 0.015, from: 'random' },
+          ease: 'power2.out',
+        })
         .to(
           '.balloon',
           {
             y: travel,
-            duration: 3.4,
-            stagger: { each: 0.035, from: 'center' },
-            ease: 'power1.inOut',
+            duration: 3.2,
+            stagger: { each: 0.028, from: 'edges' },
+            ease: 'power1.in',
           },
-          '-=0.15',
+          '-=0.1',
         )
-        // 2) Only AFTER balloons clear the top: big sparkle burst
+        // 2) AFTER balloons clear: big sparkle burst
+        .add(() => {
+          burstArmed.current = true
+        })
         .to(
           '[data-burst]',
           {
             opacity: 1,
-            scale: 1.2,
-            duration: 0.55,
-            ease: 'back.out(2)',
+            scale: 1.25,
+            duration: 0.5,
+            ease: 'back.out(2.2)',
           },
-          '>-0.05',
         )
         .to(
           '.burst-spark',
@@ -89,52 +100,51 @@ export function RevealChapter({ onContinue }: Props) {
             y: (_i, target) => Number((target as HTMLElement).dataset.y || 0),
             scale: 1,
             rotation: (_i, target) => Number((target as HTMLElement).dataset.rot || 0),
-            duration: 0.9,
-            stagger: 0.006,
+            duration: 0.95,
+            stagger: 0.005,
             ease: 'power3.out',
           },
-          '-=0.35',
+          '-=0.3',
         )
-        .to(
-          '[data-burst]',
-          { scale: 1, duration: 0.4, ease: 'power2.out' },
-          '-=0.35',
-        )
-        // 3) Reveal the birthday page
-        .to('[data-veil]', { opacity: 0, duration: 0.9, ease: 'power2.inOut' }, '-=0.25')
+        .to('[data-burst]', { scale: 1, duration: 0.45, ease: 'power2.out' }, '-=0.4')
+        // 3) Birthday copy reveals on top of the celebration
+        .to('[data-copy]', { opacity: 1, duration: 0.2 }, '-=0.15')
         .fromTo(
           '[data-reveal-line]',
-          { yPercent: 120, opacity: 0, scale: 0.9 },
+          { yPercent: 110, opacity: 0, scale: 0.92 },
           {
             yPercent: 0,
             opacity: 1,
             scale: 1,
-            duration: 1.15,
-            stagger: 0.16,
+            duration: 1.1,
+            stagger: 0.15,
             ease: 'power4.out',
           },
-          '-=0.45',
+          '-=0.05',
         )
         .fromTo(
           '[data-reveal-sub]',
-          { opacity: 0, y: 28 },
-          { opacity: 1, y: 0, duration: 0.9, ease: 'power3.out' },
+          { opacity: 0, y: 24 },
+          { opacity: 1, y: 0, duration: 0.85, ease: 'power3.out' },
           '-=0.35',
         )
         .fromTo(
           '[data-reveal-cta]',
-          { opacity: 0, y: 18, scale: 0.92 },
-          { opacity: 1, y: 0, scale: 1, duration: 0.75, ease: 'power3.out' },
+          { opacity: 0, y: 16, scale: 0.94 },
+          { opacity: 1, y: 0, scale: 1, duration: 0.7, ease: 'power3.out' },
           '-=0.3',
         )
         .to(
           ['.burst-spark', '.burst-glow'],
-          { opacity: 0.35, duration: 1.2, ease: 'power1.out' },
-          '-=0.6',
+          { opacity: 0.4, duration: 1.1, ease: 'power1.out' },
+          '-=0.5',
         )
     }, el)
 
-    return () => ctx.revert()
+    return () => {
+      ctx.revert()
+      tl?.kill()
+    }
   }, [reduced])
 
   useEffect(() => {
@@ -147,20 +157,15 @@ export function RevealChapter({ onContinue }: Props) {
     let raf = 0
     let width = 0
     let height = 0
-    let active = false
-    // Delay canvas sparkles until burst moment (~3.8s)
-    const arm = window.setTimeout(() => {
-      active = true
-    }, 3800)
 
-    const particles = Array.from({ length: 120 }, (_, i) => ({
-      x: 0.5 + (Math.random() - 0.5) * 0.08,
-      y: 0.5 + (Math.random() - 0.5) * 0.08,
-      r: 1.2 + Math.random() * 3.8,
-      vx: (Math.random() - 0.5) * 0.012,
-      vy: (Math.random() - 0.5) * 0.012,
+    const particles = Array.from({ length: 140 }, (_, i) => ({
+      x: 0.5 + (Math.random() - 0.5) * 0.06,
+      y: 0.5 + (Math.random() - 0.5) * 0.06,
+      r: 1.4 + Math.random() * 4,
+      vx: (Math.random() - 0.5) * 0.014,
+      vy: (Math.random() - 0.5) * 0.014,
       life: 0,
-      max: 0.7 + Math.random() * 0.9,
+      max: 0.75 + Math.random() * 0.9,
       color: PASTELS[i % PASTELS.length],
       spin: Math.random() * Math.PI,
     }))
@@ -196,7 +201,7 @@ export function RevealChapter({ onContinue }: Props) {
 
     const draw = () => {
       ctx.clearRect(0, 0, width, height)
-      if (active) {
+      if (burstArmed.current) {
         for (const p of particles) {
           p.life += 0.016
           p.x += p.vx
@@ -204,12 +209,12 @@ export function RevealChapter({ onContinue }: Props) {
           p.vy -= 0.00008
           p.spin += 0.04
           const t = Math.min(1, p.life / p.max)
-          const fade = t < 0.15 ? t / 0.15 : 1 - (t - 0.15) / 0.85
+          const fade = t < 0.12 ? t / 0.12 : 1 - (t - 0.12) / 0.88
           if (fade <= 0) {
-            p.x = 0.5 + (Math.random() - 0.5) * 0.05
-            p.y = 0.5 + (Math.random() - 0.5) * 0.05
-            p.vx = (Math.random() - 0.5) * 0.014
-            p.vy = (Math.random() - 0.5) * 0.014
+            p.x = 0.5 + (Math.random() - 0.5) * 0.04
+            p.y = 0.5 + (Math.random() - 0.5) * 0.04
+            p.vx = (Math.random() - 0.5) * 0.016
+            p.vy = (Math.random() - 0.5) * 0.016
             p.life = 0
             continue
           }
@@ -226,7 +231,6 @@ export function RevealChapter({ onContinue }: Props) {
     window.addEventListener('resize', resize)
     return () => {
       cancelAnimationFrame(raf)
-      window.clearTimeout(arm)
       window.removeEventListener('resize', resize)
     }
   }, [reduced])
@@ -246,22 +250,18 @@ export function RevealChapter({ onContinue }: Props) {
         style={{ width: '34vw', height: '14vw', top: '18%', right: '-4%', background: 'rgba(200,232,255,0.55)' }}
       />
 
-      <SparkleField className="z-[14] opacity-40" />
-      <canvas ref={canvasRef} className="pointer-events-none absolute inset-0 z-[29]" aria-hidden />
+      <SparkleField className="z-[10] opacity-50" />
 
+      {/* Balloons + burst sit ABOVE the sky, BELOW the text — always visible */}
       <BalloonField count={64} />
       <SparkleBurst count={80} />
+      <canvas ref={canvasRef} className="pointer-events-none absolute inset-0 z-[36]" aria-hidden />
 
-      <div
-        data-veil
-        className="pointer-events-none absolute inset-0 z-[32] bg-[var(--paper)]"
-      />
-
-      <div className="relative z-40 mx-auto max-w-6xl px-6 text-center">
+      <div data-copy className="relative z-40 mx-auto max-w-6xl px-6 text-center opacity-0">
         <div className="overflow-hidden">
           <p
             data-reveal-line
-            className="font-display text-[clamp(3rem,12vw,7.5rem)] leading-[0.9] text-[var(--bow)]"
+            className="font-display text-[clamp(3rem,12vw,7.5rem)] leading-[0.9] text-[var(--bow)] drop-shadow-[0_4px_24px_rgba(255,255,255,0.65)]"
           >
             {reveal.headline}
           </p>
@@ -269,7 +269,7 @@ export function RevealChapter({ onContinue }: Props) {
         <div className="mt-3 overflow-hidden md:mt-5">
           <p
             data-reveal-line
-            className="font-script text-[clamp(2.6rem,9vw,5.5rem)] leading-none text-[var(--ink)]"
+            className="font-script text-[clamp(2.6rem,9vw,5.5rem)] leading-none text-[var(--ink)] drop-shadow-[0_4px_20px_rgba(255,255,255,0.55)]"
           >
             {recipientName}
           </p>

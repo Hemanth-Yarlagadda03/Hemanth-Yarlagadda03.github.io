@@ -32,7 +32,7 @@ export function BalloonField({ count = 64 }: { count?: number }) {
 
   return (
     <div
-      className="balloon-field pointer-events-none absolute inset-0 z-[25] overflow-hidden"
+      className="balloon-field pointer-events-none absolute inset-0 z-[30] overflow-hidden"
       aria-hidden
     >
       {balloons.map((b) => (
