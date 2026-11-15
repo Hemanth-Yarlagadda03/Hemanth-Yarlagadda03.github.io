@@ -34,7 +34,7 @@ export const siteContent = {
   opening: {
     introLine: 'Pushkara, a surprise waits for you.',
     videoSrc: '/assets/opening/celebrity-wish.mp4',
-    posterSrc: '/assets/opening/poster.svg',
+    posterSrc: '/assets/opening/poster.jpg',
     durationHint: 'Press play when you’re ready',
   },
 
@@ -48,36 +48,35 @@ export const siteContent = {
   highlights: {
     eyebrow: 'Chapter 03',
     title: 'Pushkara Highlights',
-    subtitle:
-      'Moments that feel like you. Tap any clip to play. Drop your videos into /assets/videos/.',
+    subtitle: 'Moments that feel like you. Tap any clip to play.',
     items: [
       {
         id: 'hl-01',
         title: 'Highlight 01',
-        caption: 'Add highlight-01.mp4',
+        caption: 'A little moment kept',
         src: '/assets/videos/highlight-01.mp4',
-        poster: '/assets/videos/memory-01-poster.svg',
+        poster: '/assets/videos/highlight-01-poster.jpg',
       },
       {
         id: 'hl-02',
         title: 'Highlight 02',
-        caption: 'Add highlight-02.mp4',
+        caption: 'Still smiling in this one',
         src: '/assets/videos/highlight-02.mp4',
-        poster: '/assets/videos/memory-02-poster.svg',
+        poster: '/assets/videos/highlight-02-poster.jpg',
       },
       {
         id: 'hl-03',
         title: 'Highlight 03',
-        caption: 'Add highlight-03.mp4',
+        caption: 'One of the good days',
         src: '/assets/videos/highlight-03.mp4',
-        poster: '/assets/videos/memory-03-poster.svg',
+        poster: '/assets/videos/highlight-03-poster.jpg',
       },
       {
         id: 'hl-04',
         title: 'Highlight 04',
-        caption: 'Add highlight-04.mp4',
+        caption: 'Pure Pushkara energy',
         src: '/assets/videos/highlight-04.mp4',
-        poster: '/assets/videos/memory-01-poster.svg',
+        poster: '/assets/videos/highlight-04-poster.jpg',
       },
     ] satisfies VideoMemory[],
   },
@@ -189,14 +188,14 @@ export const siteContent = {
   videos: {
     eyebrow: 'Chapter 06',
     title: 'Video Memory',
-    subtitle: 'One clip that holds a whole feeling. Add your MP4 when ready.',
+    subtitle: 'One clip that holds a whole feeling.',
     items: [
       {
         id: 'vid-01',
         title: 'A moment kept',
-        caption: 'Replace with memory-01.mp4',
+        caption: 'Pressed play when you need the feeling again',
         src: '/assets/videos/memory-01.mp4',
-        poster: '/assets/videos/memory-01-poster.svg',
+        poster: '/assets/videos/memory-01-poster.jpg',
       },
     ] satisfies VideoMemory[],
   },
