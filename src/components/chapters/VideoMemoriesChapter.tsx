@@ -93,13 +93,26 @@ export function VideoMemoriesChapter() {
           tone="dark"
         />
 
-        <div className="grid gap-5 md:grid-cols-2 md:gap-7">
-          {videos.items.map((item, i) => (
-            <div key={item.id} className={i === 0 ? 'md:col-span-2' : ''}>
-              <MemoryTile item={item} onPlay={setActive} />
+        {videos.items.length === 0 ? (
+          <div className="mt-4 flex aspect-[16/8] w-full items-center justify-center rounded-[1.5rem] border border-white/20 bg-white/5 px-8 text-center">
+            <div>
+              <p className="font-display text-3xl text-[var(--ivory)] md:text-4xl">
+                Yaadein loading…
+              </p>
+              <p className="mt-3 text-sm text-[var(--ivory)]/65">
+                This clip is coming soon.
+              </p>
             </div>
-          ))}
-        </div>
+          </div>
+        ) : (
+          <div className="grid gap-5 md:grid-cols-2 md:gap-7">
+            {videos.items.map((item, i) => (
+              <div key={item.id} className={i === 0 ? 'md:col-span-2' : ''}>
+                <MemoryTile item={item} onPlay={setActive} />
+              </div>
+            ))}
+          </div>
+        )}
       </div>
 
       {active && (

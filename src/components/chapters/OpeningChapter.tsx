@@ -6,6 +6,7 @@ import { siteContent } from '../../content/siteContent'
 import { useAudio } from '../audio/AudioProvider'
 import { useMediaPresence } from '../../hooks/useMediaPresence'
 import { useReducedMotion } from '../../hooks/useReducedMotion'
+import { SparkleField } from '../ui/SparkleField'
 
 interface Props {
   onComplete: () => void
@@ -38,13 +39,6 @@ export function OpeningChapter({ onComplete }: Props) {
         { y: 36, opacity: 0 },
         { y: 0, opacity: 1, duration: 1.2, stagger: 0.15, ease: 'power3.out', delay: 0.3 },
       )
-      gsap.to('[data-ambient]', {
-        scale: 1.06,
-        duration: 12,
-        ease: 'sine.inOut',
-        yoyo: true,
-        repeat: -1,
-      })
     }, el)
     return () => ctx.revert()
   }, [reduced])
@@ -100,15 +94,19 @@ export function OpeningChapter({ onComplete }: Props) {
       style={{ ['--cursor-fg' as string]: 'var(--ink)' }}
     >
       <div
-        data-ambient
-        className="pointer-events-none absolute inset-[-8%] bg-cover bg-center opacity-55"
-        style={{
-          backgroundImage: `url(${opening.posterSrc})`,
-          filter: 'saturate(1.15) contrast(1.02)',
-        }}
+        className="cloud-blob"
+        style={{ width: '42vw', height: '18vw', top: '10%', left: '-8%', background: 'rgba(255,255,255,0.7)' }}
       />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba_10%,rgba(255,230,242,0.82)_70%)]" />
-      <div className="film-grain absolute inset-0" />
+      <div
+        className="cloud-blob"
+        style={{ width: '36vw', height: '14vw', top: '16%', right: '-6%', background: 'rgba(200,232,255,0.55)' }}
+      />
+      <div
+        className="cloud-blob"
+        style={{ width: '40vw', height: '16vw', bottom: '12%', left: '18%', background: 'rgba(154,240,216,0.28)' }}
+      />
+      <SparkleField className="z-[5] opacity-45" />
+      <div className="film-grain absolute inset-0 z-[6]" />
 
       <div className="relative z-10 mx-auto flex w-full max-w-4xl flex-col items-center px-6 text-center">
         <p
@@ -120,7 +118,7 @@ export function OpeningChapter({ onComplete }: Props) {
 
         <div
           data-open-reveal
-          className="relative aspect-video w-full max-w-3xl overflow-hidden rounded-[1.75rem] border-4 border-white bg-white/50 shadow-[0_30px_80px_rgba(255,79,135,0.25)]"
+          className="relative aspect-video w-full max-w-3xl overflow-hidden rounded-[1.75rem] border-4 border-white bg-black/10 shadow-[0_30px_80px_rgba(255,79,135,0.22)]"
         >
           <video
             ref={videoRef}
@@ -146,7 +144,7 @@ export function OpeningChapter({ onComplete }: Props) {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 onClick={handlePlay}
-                className="absolute inset-0 flex flex-col items-center justify-center gap-5 bg-[var(--bow)]/25 backdrop-blur-[2px]"
+                className="absolute inset-0 flex flex-col items-center justify-center gap-5 bg-[var(--bow)]/20 backdrop-blur-[1px]"
                 data-cursor-hover
                 aria-label="Play birthday message"
               >
@@ -173,14 +171,7 @@ export function OpeningChapter({ onComplete }: Props) {
                 className="absolute inset-0 flex flex-col items-center justify-center bg-[linear-gradient(160deg,#ffe6f2,#eaf7ff)] px-8 text-center"
               >
                 <p className="font-display text-[clamp(1.8rem,5vw,3.2rem)] leading-tight text-[var(--bow)]">
-                  A sparkly message
-                  <br />
-                  is on its way.
-                </p>
-                <p className="mt-4 max-w-md text-sm text-[var(--ink-muted)]">
-                  Add <code className="text-[var(--cherry)]">celebrity-wish.mp4</code> to{' '}
-                  <code className="text-[var(--cherry)]">/public/assets/opening/</code> to replace
-                  this placeholder.
+                  A message is on its way.
                 </p>
               </motion.div>
             )}

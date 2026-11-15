@@ -47,36 +47,43 @@ export const siteContent = {
 
   highlights: {
     eyebrow: 'Chapter 03',
-    title: 'Pushkara Highlights',
-    subtitle: 'Moments that feel like you. Tap any clip to play.',
+    title: 'Pushkara Moments',
+    subtitle: 'Moments that feel like you.',
     items: [
       {
         id: 'hl-01',
-        title: 'Highlight 01',
+        title: 'Moment 01',
         caption: 'A little moment kept',
         src: '/assets/videos/highlight-01.mp4',
         poster: '/assets/videos/highlight-01-poster.jpg',
       },
       {
         id: 'hl-02',
-        title: 'Highlight 02',
+        title: 'Moment 02',
         caption: 'Still smiling in this one',
         src: '/assets/videos/highlight-02.mp4',
         poster: '/assets/videos/highlight-02-poster.jpg',
       },
       {
         id: 'hl-03',
-        title: 'Highlight 03',
+        title: 'Moment 03',
         caption: 'One of the good days',
         src: '/assets/videos/highlight-03.mp4',
         poster: '/assets/videos/highlight-03-poster.jpg',
       },
       {
         id: 'hl-04',
-        title: 'Highlight 04',
+        title: 'Moment 04',
         caption: 'Pure Pushkara energy',
         src: '/assets/videos/highlight-04.mp4',
         poster: '/assets/videos/highlight-04-poster.jpg',
+      },
+      {
+        id: 'hl-05',
+        title: 'Moment 05',
+        caption: 'This one hits different',
+        src: '/assets/videos/highlight-05.mp4',
+        poster: '/assets/videos/highlight-05-poster.jpg',
       },
     ] satisfies VideoMemory[],
   },
@@ -188,16 +195,8 @@ export const siteContent = {
   videos: {
     eyebrow: 'Chapter 06',
     title: 'Yaadein',
-    subtitle: 'Ek clip, poori feeling.',
-    items: [
-      {
-        id: 'vid-01',
-        title: 'Yeh yaad',
-        caption: 'Jab dil chahe, wapas dekh lena',
-        src: '/assets/videos/memory-01.mp4',
-        poster: '/assets/videos/memory-01-poster.jpg',
-      },
-    ] satisfies VideoMemory[],
+    subtitle: 'Coming soon.',
+    items: [] as VideoMemory[],
   },
 
   finale: {
