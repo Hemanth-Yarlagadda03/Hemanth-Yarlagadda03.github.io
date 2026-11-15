@@ -139,10 +139,10 @@ export function VideoMemoriesChapter() {
                 controls
                 autoPlay
                 playsInline
-                className="aspect-video w-full bg-black"
+                className="max-h-[85vh] w-full bg-black object-contain"
               />
             ) : (
-              <div className="flex aspect-video flex-col items-center justify-center gap-4 border border-[var(--ivory)]/15 bg-[var(--ink)] px-8 text-center">
+              <div className="relative flex aspect-video flex-col items-center justify-center gap-4 border border-[var(--ivory)]/15 bg-[var(--ink)] px-8 text-center">
                 <img
                   src={active.poster}
                   alt=""

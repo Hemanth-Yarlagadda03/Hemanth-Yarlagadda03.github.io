@@ -195,8 +195,16 @@ export const siteContent = {
   videos: {
     eyebrow: 'Chapter 06',
     title: 'Yaadein',
-    subtitle: 'Coming soon.',
-    items: [] as VideoMemory[],
+    subtitle: 'A few minutes of you, kept close.',
+    items: [
+      {
+        id: 'yaadein-01',
+        title: 'Yaadein',
+        caption: 'Press play when you’re ready',
+        src: '/assets/videos/yaadein.mp4',
+        poster: '/assets/videos/yaadein-poster.jpg',
+      },
+    ] satisfies VideoMemory[],
   },
 
   finale: {
