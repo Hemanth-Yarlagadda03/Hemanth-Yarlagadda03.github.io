@@ -143,12 +143,27 @@ export function OpeningChapter({ onComplete }: Props) {
           aria-hidden={isFullscreen}
         >
           {!isFullscreen && (
-            <div className="absolute inset-0 overflow-hidden rounded-[1.75rem] border-4 border-white bg-black/10 shadow-[0_30px_80px_rgba(255,79,135,0.22)]">
-              <img
-                src={opening.posterSrc}
-                alt=""
-                className="h-full w-full object-contain bg-black/20"
+            <div className="absolute inset-0 overflow-hidden rounded-[1.75rem] border-4 border-white shadow-[0_30px_80px_rgba(255,79,135,0.22)]">
+              {/* Sealed tease — no video thumbnail spoiler */}
+              <div
+                className="absolute inset-0"
+                style={{
+                  background:
+                    'radial-gradient(ellipse at 30% 20%, rgba(255,255,255,0.85), transparent 45%), radial-gradient(ellipse at 80% 80%, rgba(228,210,255,0.7), transparent 40%), linear-gradient(145deg, #ffe3ef 0%, #eaf7ff 48%, #f3e8ff 100%)',
+                }}
               />
+              <motion.div
+                aria-hidden
+                className="pointer-events-none absolute -left-1/3 top-0 h-full w-1/2 skew-x-[-18deg] bg-gradient-to-r from-transparent via-white/50 to-transparent"
+                animate={reduced ? undefined : { x: ['0%', '280%'] }}
+                transition={
+                  reduced
+                    ? undefined
+                    : { duration: 4.2, repeat: Infinity, ease: 'easeInOut', repeatDelay: 1.4 }
+                }
+              />
+              <div className="pointer-events-none absolute inset-6 rounded-[1.25rem] border border-white/70" />
+              <SparkleField className="opacity-50" />
 
               <AnimatePresence>
                 {(phase === 'ready' || phase === 'loading') && (
@@ -158,11 +173,17 @@ export function OpeningChapter({ onComplete }: Props) {
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                     onClick={handlePlay}
-                    className="absolute inset-0 flex flex-col items-center justify-center gap-5 bg-[var(--bow)]/20 backdrop-blur-[1px]"
+                    className="absolute inset-0 flex flex-col items-center justify-center gap-4 px-8"
                     data-cursor-hover
                     aria-label="Play birthday message"
                   >
-                    <span className="flex h-20 w-20 items-center justify-center rounded-full border-4 border-white bg-[var(--bow)] shadow-[0_12px_30px_rgba(239,62,86,0.35)] transition-transform hover:scale-105">
+                    <p className="font-script text-[clamp(1.6rem,4vw,2.4rem)] leading-none text-[var(--bow)]">
+                      Something just for you
+                    </p>
+                    <p className="max-w-xs text-sm font-medium text-[var(--ink-muted)]">
+                      A sealed wish. Press play when your heart is ready.
+                    </p>
+                    <span className="mt-2 flex h-20 w-20 items-center justify-center rounded-full border-4 border-white bg-[var(--bow)] shadow-[0_12px_30px_rgba(239,62,86,0.35)] transition-transform hover:scale-105">
                       {phase === 'loading' ? (
                         <span className="h-8 w-8 animate-spin rounded-full border-2 border-white/30 border-t-white" />
                       ) : (
@@ -170,7 +191,7 @@ export function OpeningChapter({ onComplete }: Props) {
                       )}
                     </span>
                     <span className="text-[0.75rem] font-bold tracking-[0.22em] uppercase text-[var(--ink)]">
-                      {phase === 'loading' ? 'Preparing…' : 'Play message'}
+                      {phase === 'loading' ? 'Preparing…' : 'Open the wish'}
                     </span>
                   </motion.button>
                 )}
@@ -229,7 +250,6 @@ export function OpeningChapter({ onComplete }: Props) {
             <video
               ref={videoRef}
               className="h-full w-full flex-1 object-contain bg-black"
-              poster={opening.posterSrc}
               playsInline
               preload="auto"
               onTimeUpdate={() => {
