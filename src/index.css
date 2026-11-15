@@ -99,15 +99,15 @@ body {
   pointer-events: none;
 }
 
-/* Light blush wash so the leopard print stays visible but text stays readable */
+/* Blush wash keeps leopard visible while giving text a readable base */
 .leopard-wash {
   pointer-events: none;
   background:
     linear-gradient(
       165deg,
-      rgba(255, 246, 250, 0.55) 0%,
-      rgba(255, 236, 242, 0.48) 50%,
-      rgba(255, 248, 251, 0.58) 100%
+      rgba(255, 248, 251, 0.82) 0%,
+      rgba(255, 240, 245, 0.78) 50%,
+      rgba(255, 250, 252, 0.84) 100%
     );
 }
 
