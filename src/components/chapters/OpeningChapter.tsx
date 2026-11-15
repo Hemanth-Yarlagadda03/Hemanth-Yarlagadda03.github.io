@@ -43,6 +43,37 @@ export function OpeningChapter({ onComplete }: Props) {
     return () => ctx.revert()
   }, [reduced])
 
+  useEffect(() => {
+    if (phase !== 'playing') return
+    const prev = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    return () => {
+      document.body.style.overflow = prev
+    }
+  }, [phase])
+
+  useEffect(() => {
+    if (phase !== 'playing') return
+    const video = videoRef.current
+    if (!video) return
+
+    let cancelled = false
+    const start = async () => {
+      try {
+        duck()
+        await video.play()
+      } catch {
+        if (!cancelled) playFallback()
+      }
+    }
+    void start()
+    return () => {
+      cancelled = true
+    }
+    // playFallback / duck are stable enough for this open-once path
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [phase])
+
   const finish = () => {
     unduck()
     const el = rootRef.current
@@ -52,7 +83,7 @@ export function OpeningChapter({ onComplete }: Props) {
     }
     gsap.to(el, {
       opacity: 0,
-      scale: 1.04,
+      scale: 1.02,
       filter: 'blur(8px)',
       duration: 1.1,
       ease: 'power2.inOut',
@@ -66,26 +97,15 @@ export function OpeningChapter({ onComplete }: Props) {
     window.setTimeout(finish, reduced ? 800 : 4200)
   }
 
-  const handlePlay = async () => {
+  const handlePlay = () => {
     if (videoPresent === false) {
       playFallback()
       return
     }
-
-    const video = videoRef.current
-    if (!video) {
-      playFallback()
-      return
-    }
-
-    try {
-      duck()
-      setPhase('playing')
-      await video.play()
-    } catch {
-      playFallback()
-    }
+    setPhase('playing')
   }
+
+  const isFullscreen = phase === 'playing'
 
   return (
     <section
@@ -116,80 +136,67 @@ export function OpeningChapter({ onComplete }: Props) {
           {opening.introLine}
         </p>
 
+        {/* Spacer keeps layout while video expands fullscreen */}
         <div
           data-open-reveal
-          className="relative aspect-video w-full max-w-3xl overflow-hidden rounded-[1.75rem] border-4 border-white bg-black/10 shadow-[0_30px_80px_rgba(255,79,135,0.22)]"
+          className={`relative aspect-video w-full max-w-3xl ${isFullscreen ? 'invisible' : ''}`}
+          aria-hidden={isFullscreen}
         >
-          <video
-            ref={videoRef}
-            className="h-full w-full object-cover"
-            poster={opening.posterSrc}
-            playsInline
-            preload="metadata"
-            onTimeUpdate={() => {
-              const v = videoRef.current
-              if (!v?.duration) return
-              setProgress(v.currentTime / v.duration)
-            }}
-            onEnded={finish}
-          >
-            <source src={opening.videoSrc} type="video/mp4" />
-          </video>
-
-          <AnimatePresence>
-            {(phase === 'ready' || phase === 'loading') && (
-              <motion.button
-                type="button"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                onClick={handlePlay}
-                className="absolute inset-0 flex flex-col items-center justify-center gap-5 bg-[var(--bow)]/20 backdrop-blur-[1px]"
-                data-cursor-hover
-                aria-label="Play birthday message"
-              >
-                <span className="flex h-20 w-20 items-center justify-center rounded-full border-4 border-white bg-[var(--bow)] shadow-[0_12px_30px_rgba(239,62,86,0.35)] transition-transform hover:scale-105">
-                  {phase === 'loading' ? (
-                    <span className="h-8 w-8 animate-spin rounded-full border-2 border-white/30 border-t-white" />
-                  ) : (
-                    <Play className="ml-1 text-white" size={28} fill="currentColor" />
-                  )}
-                </span>
-                <span className="text-[0.75rem] font-bold tracking-[0.22em] uppercase text-[var(--ink)]">
-                  {phase === 'loading' ? 'Preparing…' : 'Play message'}
-                </span>
-              </motion.button>
-            )}
-          </AnimatePresence>
-
-          <AnimatePresence>
-            {phase === 'fallback' && (
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                className="absolute inset-0 flex flex-col items-center justify-center bg-[linear-gradient(160deg,#ffe6f2,#eaf7ff)] px-8 text-center"
-              >
-                <p className="font-display text-[clamp(1.8rem,5vw,3.2rem)] leading-tight text-[var(--bow)]">
-                  A message is on its way.
-                </p>
-              </motion.div>
-            )}
-          </AnimatePresence>
-
-          {phase === 'playing' && (
-            <div className="absolute inset-x-0 bottom-0 h-[3px] bg-white/40">
-              <div
-                className="h-full bg-[var(--bow)] transition-[width] duration-200"
-                style={{ width: `${progress * 100}%` }}
+          {!isFullscreen && (
+            <div className="absolute inset-0 overflow-hidden rounded-[1.75rem] border-4 border-white bg-black/10 shadow-[0_30px_80px_rgba(255,79,135,0.22)]">
+              <img
+                src={opening.posterSrc}
+                alt=""
+                className="h-full w-full object-contain bg-black/20"
               />
+
+              <AnimatePresence>
+                {(phase === 'ready' || phase === 'loading') && (
+                  <motion.button
+                    type="button"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    onClick={handlePlay}
+                    className="absolute inset-0 flex flex-col items-center justify-center gap-5 bg-[var(--bow)]/20 backdrop-blur-[1px]"
+                    data-cursor-hover
+                    aria-label="Play birthday message"
+                  >
+                    <span className="flex h-20 w-20 items-center justify-center rounded-full border-4 border-white bg-[var(--bow)] shadow-[0_12px_30px_rgba(239,62,86,0.35)] transition-transform hover:scale-105">
+                      {phase === 'loading' ? (
+                        <span className="h-8 w-8 animate-spin rounded-full border-2 border-white/30 border-t-white" />
+                      ) : (
+                        <Play className="ml-1 text-white" size={28} fill="currentColor" />
+                      )}
+                    </span>
+                    <span className="text-[0.75rem] font-bold tracking-[0.22em] uppercase text-[var(--ink)]">
+                      {phase === 'loading' ? 'Preparing…' : 'Play message'}
+                    </span>
+                  </motion.button>
+                )}
+              </AnimatePresence>
+
+              <AnimatePresence>
+                {phase === 'fallback' && (
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    className="absolute inset-0 flex flex-col items-center justify-center bg-[linear-gradient(160deg,#ffe6f2,#eaf7ff)] px-8 text-center"
+                  >
+                    <p className="font-display text-[clamp(1.8rem,5vw,3.2rem)] leading-tight text-[var(--bow)]">
+                      A message is on its way.
+                    </p>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
           )}
         </div>
 
         <div
           data-open-reveal
-          className="mt-8 flex items-center gap-3 text-[0.7rem] font-bold tracking-[0.2em] uppercase text-[var(--ink-muted)]"
+          className={`mt-8 flex items-center gap-3 text-[0.7rem] font-bold tracking-[0.2em] uppercase text-[var(--ink-muted)] ${isFullscreen ? 'invisible' : ''}`}
         >
           <Volume2 size={14} />
           <span>Sound on · {opening.durationHint}</span>
@@ -205,6 +212,45 @@ export function OpeningChapter({ onComplete }: Props) {
           </button>
         )}
       </div>
+
+      <AnimatePresence>
+        {isFullscreen && (
+          <motion.div
+            key="opening-fullscreen"
+            className="fixed inset-0 z-[80] flex flex-col bg-black"
+            initial={reduced ? false : { opacity: 0, scale: 0.92 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.96 }}
+            transition={{ duration: reduced ? 0 : 0.45, ease: [0.22, 1, 0.36, 1] }}
+            role="dialog"
+            aria-modal="true"
+            aria-label="Birthday message"
+          >
+            <video
+              ref={videoRef}
+              className="h-full w-full flex-1 object-contain bg-black"
+              poster={opening.posterSrc}
+              playsInline
+              preload="auto"
+              onTimeUpdate={() => {
+                const v = videoRef.current
+                if (!v?.duration) return
+                setProgress(v.currentTime / v.duration)
+              }}
+              onEnded={finish}
+            >
+              <source src={opening.videoSrc} type="video/mp4" />
+            </video>
+
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1 bg-white/20">
+              <div
+                className="h-full bg-[var(--bow)] transition-[width] duration-200"
+                style={{ width: `${progress * 100}%` }}
+              />
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   )
 }
