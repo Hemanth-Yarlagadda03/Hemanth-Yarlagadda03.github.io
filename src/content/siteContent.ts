@@ -85,62 +85,62 @@ export const siteContent = {
   littleThings: {
     eyebrow: 'Chapter 04',
     title: 'Little Things About You',
-    subtitle: 'Tap one. Tiny truths I notice about you.',
+    subtitle: 'Tap each one. Small truths that feel like you.',
     items: [
       {
         id: 'lt-01',
         label: 'Your boba eyes',
         detail:
-          'Okay but your eyes though. People actually get stuck looking at them. Soft, deep, kind of unfair.',
+          'Soft, deep, and hard to look away from. People get lost in them without meaning to.',
         accent: 'rose',
       },
       {
         id: 'lt-02',
         label: 'Your humour',
         detail:
-          'You crack a joke and the whole room loosens up. Like, instantly. You do that without even trying.',
+          'You light up a room with your jokes. Suddenly everything feels easier, warmer, more alive.',
         accent: 'gold',
       },
       {
         id: 'lt-03',
         label: 'Your kindness',
         detail:
-          'You’re just sweet. Not performance sweet. The real kind that makes people feel taken care of.',
+          'You are truly sweet. The kind of kindness that feels steady and real, not put on.',
         accent: 'burgundy',
       },
       {
         id: 'lt-04',
         label: 'Your intelligence',
         detail:
-          'You’re sharp and you work hard and it shows. Watching you achieve things is honestly inspiring.',
+          'You are bright, sharp, and driven. An achiever in the truest sense, and it shows.',
         accent: 'midnight',
       },
       {
         id: 'lt-05',
         label: 'Your empathy',
         detail:
-          'You actually care how people feel. You check in. You notice the quiet stuff most people miss.',
+          'You care about people in a way that feels rare. You notice what others need, and you meet them there.',
         accent: 'gold',
       },
       {
         id: 'lt-06',
         label: 'Your angelic presence',
         detail:
-          'You walk in and the vibe gets prettier somehow. Charisma, softness, all of it. Very you.',
+          'Beautiful and charismatic without trying. You soften a space just by being in it.',
         accent: 'rose',
       },
       {
         id: 'lt-07',
         label: 'Your sparkly smile',
         detail:
-          'Prettiest smile. Full stop. Hope it never wears off, queen. The world needs that smile.',
+          'You have the prettiest smile. May it never fade. Keep shining, queen.',
         accent: 'burgundy',
       },
       {
         id: 'lt-08',
         label: 'Your resilience',
         detail:
-          'When things get messy you still show up. You deal with the hard stuff and you don’t quit. That grit is rare.',
+          'Your tenacity when life gets heavy. You face hard things and still refuse to give up.',
         accent: 'midnight',
       },
     ] satisfies LittleThing[],
