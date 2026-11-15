@@ -25,15 +25,21 @@ const DUCKED_VOLUME = 0.06
 
 export function AudioProvider({ children }: { children: ReactNode }) {
   const audioRef = useRef<HTMLAudioElement | null>(null)
-  const [enabled, setEnabled] = useState(false)
+  const [enabled, setEnabled] = useState(true)
   const [hasTrack, setHasTrack] = useState(false)
+  const enabledRef = useRef(true)
   const duckedRef = useRef(false)
   const fadeRef = useRef<number | null>(null)
+  const startingRef = useRef(false)
+
+  useEffect(() => {
+    enabledRef.current = enabled
+  }, [enabled])
 
   useEffect(() => {
     const audio = new Audio()
     audio.loop = true
-    audio.preload = 'none'
+    audio.preload = 'auto'
     audio.volume = 0
     audioRef.current = audio
 
@@ -71,6 +77,66 @@ export function AudioProvider({ children }: { children: ReactNode }) {
     fadeRef.current = requestAnimationFrame(step)
   }, [])
 
+  const startPlayback = useCallback(async () => {
+    const audio = audioRef.current
+    if (!audio || !hasTrack || startingRef.current) return false
+    if (!audio.paused && audio.src) return true
+
+    startingRef.current = true
+    try {
+      if (!audio.src) audio.src = siteContent.audio.src
+      await audio.play()
+      fadeTo(duckedRef.current ? DUCKED_VOLUME : TARGET_VOLUME)
+      return true
+    } catch {
+      return false
+    } finally {
+      startingRef.current = false
+    }
+  }, [fadeTo, hasTrack])
+
+  // Prefer autoplay; if the browser blocks it, unlock on the first tap/click/key.
+  useEffect(() => {
+    if (!hasTrack || !enabled) return
+
+    let cancelled = false
+    let unlocked = false
+
+    const tryStart = async () => {
+      const ok = await startPlayback()
+      if (cancelled || ok) {
+        if (ok) unlocked = true
+        return ok
+      }
+      return false
+    }
+
+    void tryStart()
+
+    const unlock = () => {
+      if (cancelled || unlocked || !enabledRef.current) return
+      void tryStart().then((ok) => {
+        if (ok) {
+          unlocked = true
+          window.removeEventListener('pointerdown', unlock)
+          window.removeEventListener('keydown', unlock)
+          window.removeEventListener('touchstart', unlock)
+        }
+      })
+    }
+
+    window.addEventListener('pointerdown', unlock)
+    window.addEventListener('keydown', unlock)
+    window.addEventListener('touchstart', unlock)
+
+    return () => {
+      cancelled = true
+      window.removeEventListener('pointerdown', unlock)
+      window.removeEventListener('keydown', unlock)
+      window.removeEventListener('touchstart', unlock)
+    }
+  }, [enabled, hasTrack, startPlayback])
+
   const toggle = useCallback(async () => {
     const audio = audioRef.current
     if (!audio || !hasTrack) {
@@ -79,20 +145,16 @@ export function AudioProvider({ children }: { children: ReactNode }) {
     }
 
     if (!enabled) {
-      if (!audio.src) audio.src = siteContent.audio.src
-      try {
-        await audio.play()
-        setEnabled(true)
-        fadeTo(duckedRef.current ? DUCKED_VOLUME : TARGET_VOLUME)
-      } catch {
-        setEnabled(false)
-      }
+      setEnabled(true)
+      enabledRef.current = true
+      const ok = await startPlayback()
+      if (!ok) setEnabled(false)
     } else {
       fadeTo(0, 400)
       window.setTimeout(() => audio.pause(), 420)
       setEnabled(false)
     }
-  }, [enabled, fadeTo, hasTrack])
+  }, [enabled, fadeTo, hasTrack, startPlayback])
 
   const duck = useCallback(() => {
     duckedRef.current = true
